@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toAbsoluteUrl } from '../helpers/imagePathHelper';
+
+import { sampleUserData } from '../sample/sampleUserData';
 
 const LoginComponent = () => {
 
@@ -10,6 +12,8 @@ const LoginComponent = () => {
   });
 
   const [errMess, updateErrMess] = useState('');
+
+  const navigate = useNavigate();
 
   const handleOnChange = (event) => {
     const target = event.target;
@@ -24,8 +28,15 @@ const LoginComponent = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    //TODO: Change
-    updateErrMess('Invalid Email / Password');
+
+    const filteredData = sampleUserData.filter((elem) => formValues.email === elem.email);
+    if(filteredData[0].password === formValues.password) {
+      updateErrMess('');
+      navigate("/faculty");
+    } else {
+      updateErrMess('Invalid Email / Password');
+    }
+
     updateFormValues({
       ...formValues,
       password: '',
@@ -79,9 +90,9 @@ const LoginComponent = () => {
                   </div>
                   <div className="form-group mb-1">
                     <div className='input-group'>
-                      <div class="input-group-prepend">
-                        <div class="input-group-text h-100">
-                          <i class="fas fa-at" />
+                      <div className="input-group-prepend">
+                        <div className="input-group-text h-100">
+                          <i className="fas fa-at" />
                         </div>
                       </div>
                       <input
@@ -97,9 +108,9 @@ const LoginComponent = () => {
                   </div>
                   <div className="form-group mb-3">
                     <div className='input-group'>
-                      <div class="input-group-prepend">
-                        <div class="input-group-text h-100">
-                          <i class="fas fa-lock-open" />
+                      <div className="input-group-prepend">
+                        <div className="input-group-text h-100">
+                          <i className="fas fa-lock-open" />
                         </div>
                       </div>
                       <input
