@@ -10,4 +10,15 @@ export const sampleUserData = [
     phone: '8376854292',
     roles: 'ROLE_FACULTY',
   },
+  {
+    id:2,
+    email: '18bcs086@smvdu.ac.in',
+    password: 'xyz',
+    firstName:'Vamakshi',
+    lastName:'Magotra',
+    gender:'F',
+    dob:'15-11-2000',
+    phone:'9682673044',
+    roles:'ROLE_STUDENT'
+  },
 ];

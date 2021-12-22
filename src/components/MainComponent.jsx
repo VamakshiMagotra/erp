@@ -5,6 +5,7 @@ import LoginComponent from './LoginComponent';
 // Faculty Imports
 import FacultyMain from './faculty/FacultyMain';
 import FacultyHome from './faculty/FacultyHome';
+import StudentMain from './student/StudentMain';
 
 const MainComponent = () => {
   return (
@@ -16,6 +17,11 @@ const MainComponent = () => {
         <Route index element={<FacultyHome />} />
       </Route>
       {/* Faculty Routes: End */}
+      {/* Student Routes: Start*/}
+      <Route path="student" element={<StudentMain/>}>
+
+      </Route>
+      {/*Student Routes : End */}
 
       <Route path="" element={<Navigate to="/login" />} />
     </Routes>

@@ -29,10 +29,16 @@ const LoginComponent = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
 
-    const filteredData = sampleUserData.filter((elem) => formValues.email === elem.email);
-    if(filteredData[0].password === formValues.password) {
+    const filteredData = sampleUserData.filter((elem) => formValues.email === elem.email)[0];
+    if(filteredData.password === formValues.password) {
       updateErrMess('');
-      navigate("/faculty");
+      if (filteredData.roles==='ROLE_FACULTY'){
+        navigate("/faculty");
+      }
+      else if(filteredData.roles==='ROLE_STUDENT'){
+        navigate('/student');
+      }
+      
     } else {
       updateErrMess('Invalid Email / Password');
     }
