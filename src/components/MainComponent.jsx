@@ -6,6 +6,7 @@ import LoginComponent from './LoginComponent';
 import FacultyMain from './faculty/FacultyMain';
 import FacultyHome from './faculty/FacultyHome';
 import StudentMain from './student/StudentMain';
+import StudentHome from './student/StudentHome';
 
 const MainComponent = () => {
   return (
@@ -19,7 +20,7 @@ const MainComponent = () => {
       {/* Faculty Routes: End */}
       {/* Student Routes: Start*/}
       <Route path="student" element={<StudentMain/>}>
-
+          <Route index element={<StudentHome/>}/>
       </Route>
       {/*Student Routes : End */}
 
