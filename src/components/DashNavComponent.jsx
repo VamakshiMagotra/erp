@@ -1,12 +1,33 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toAbsoluteUrl } from "../helpers/imagePathHelper";
+import { Dropdown } from "react-bootstrap";
+import UserService from "../services/UserService";
 
 const DashNavComponent = ({
   parentUrl,
 }) => {
 
   const [isSideBarOpen, updateSideBarOpen] = useState(true);
+  const navigate = useNavigate();
+
+  const logoutUser = () => {
+    UserService.logoutUser()
+      .then((resp) => {
+        navigate("/");
+      }).catch((err) => {
+        navigate("/");
+      });
+  };
+
+  useEffect(() => {
+    UserService.verifyUser()
+      .then((resp) => {})
+      .catch((err) => {
+        logoutUser();
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const toggleSideBar = () => {
     if (isSideBarOpen) {
@@ -32,6 +53,16 @@ const DashNavComponent = ({
             <img src={toAbsoluteUrl('logo.png')} alt="SMVDU" height="40px" />
             ERP
           </NavLink>
+          <div className="ms-auto navbar-nav">
+            <Dropdown>
+              <Dropdown.Toggle className="bg-custom-grey shadow-none text-custom-dark border-0">
+                <i class="fas fa-user-tie" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <button onClick={logoutUser} className="btn d-block w-100 shadow-none">Logout</button>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </div>
       </div>
     </nav>

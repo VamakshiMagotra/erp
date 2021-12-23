@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toAbsoluteUrl } from '../helpers/imagePathHelper';
 
-import { sampleUserData } from '../sample/sampleUserData';
+import UserService from '../services/UserService';
 
 const LoginComponent = () => {
 
@@ -26,27 +26,52 @@ const LoginComponent = () => {
     });
   };
 
+  // On StartUp check if already loggedIn
+  useEffect(() => {
+    UserService.verifyUser()
+      .then((resp) => {
+        switch (resp.data.roles) {
+          case "ROLE_STUDENT":
+            navigate("/student");
+            break;
+          case "ROLE_FACULTY":
+            navigate("/faculty");
+            break;
+          default:
+            navigate("/");
+        }
+      }).catch((err) => { });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
 
-    const filteredData = sampleUserData.filter((elem) => formValues.email === elem.email)[0];
-    if(filteredData.password === formValues.password) {
-      updateErrMess('');
-      if (filteredData.roles==='ROLE_FACULTY'){
-        navigate("/faculty");
-      }
-      else if(filteredData.roles==='ROLE_STUDENT'){
-        navigate('/student');
-      }
-      
-    } else {
-      updateErrMess('Invalid Email / Password');
-    }
+    UserService.loginUser(formValues.email, formValues.password)
+      .then((resp) => {
+        updateFormValues({
+          ...formValues,
+          password: '',
+        });
+        updateErrMess("");
 
-    updateFormValues({
-      ...formValues,
-      password: '',
-    });
+        switch (resp.data.roles) {
+          case "ROLE_STUDENT":
+            navigate("/student");
+            break;
+          case "ROLE_FACULTY":
+            navigate("/faculty");
+            break;
+          default:
+            navigate("/");
+        }
+      }).catch((err) => {
+        updateFormValues({
+          ...formValues,
+          password: '',
+        });
+        updateErrMess('Invalid Email / Password');
+      });
   };
 
   return (
