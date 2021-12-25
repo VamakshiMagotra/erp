@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getGenderHelper } from '../../helpers/getGenderHelper';
 import { toAbsoluteUrl } from "../../helpers/imagePathHelper";
 import FacultyService from "../../services/FacultyService";
+import FileUpload from "../common/FileUploadComponent";
 
 const FacultyDetailRow = ({
   id, value, disabled, label, plaintext,
@@ -44,15 +45,22 @@ const FacultyProfile = () => {
     qualification: "",
   });
   const [disabled, updateDisabled] = useState(true);
+  const [imageUrl, setImageUrl] = useState(toAbsoluteUrl("male.png"));
 
   useEffect(() => {
     FacultyService.getFacultyDetails()
       .then((resp) => {
         const { data } = resp;
         updateUserDetails({ ...data });
+        //TODO: setImageUrl
       })
       .catch((err) => { console.log(err) });
   }, []);
+
+  const uploadImage = (imageUrl) => {
+    //TODO: upload image on server
+    setImageUrl(imageUrl);
+  };
 
   return (
     <>
@@ -62,16 +70,21 @@ const FacultyProfile = () => {
         </div>
         <div className="card-body bg-custom-grey">
           <div className="row mb-3">
-            <div className="col-12 col-xl-4 d-flex flex-column justify-content-center align-items-center">
+            <div className="col-12 col-xl-4 d-flex mb-5 mb-xl-0 flex-column justify-content-center align-items-center">
               <div className="details-image">
-                <img src={toAbsoluteUrl("male.png")} className="mb-3" alt="profile" draggable="false" />
+                <img src={imageUrl} className="mb-3" alt="profile" draggable="false" />
                 {
                   (disabled) ? (
                     <></>
                   ) : (
-                    <button className="btn d-block mx-auto bg-custom-blue text-custom-grey">
+                    <FileUpload
+                      imageOnly
+                      className="btn d-block mx-auto bg-custom-blue text-custom-grey"
+                      fileName={userDetails.id}
+                      updateDownloadUrl={uploadImage}
+                    >
                       Upload Profile Picture
-                    </button>
+                    </FileUpload>
                   )
                 }
               </div>
