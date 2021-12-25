@@ -78,6 +78,10 @@
   min-height: 100vh;
 }
 
+.width-fit {
+  width: fit-content;
+}
+
 /* Font Helpers */
 .font-roboto {
   font-family: "Roboto", sans-serif !important;
@@ -193,6 +197,26 @@
 
 /* Login Page: end */
 
+/* Accordion: Start */
+
+.accordion-button,
+.accordion-button:not(.collapsed) {
+  background-color: var(--color-grey);
+  color: var(--color-dark);
+  font-weight: 700;
+}
+.accordion-button:focus,
+.accordion-button:active {
+  box-shadow: none!important;
+  outline: none!important;
+  border: none!important;
+}
+.accordion-button::after {
+  display: none;
+}
+
+/* Accordion: End */
+
 /* Dashboard: start */
 
 .dashboard {
@@ -238,4 +262,63 @@
   position: relative;
 }
 
+.details-image img {
+  background-color: var(--color-sec);
+  border-radius: 50%;
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+}
+
 /* Dashboard: end */
+
+
+@media (max-width: 991.98px) {
+  
+  .hamburger .line:nth-child(1),
+  .hamburger .line:nth-child(3){
+    width: 15px;
+  }
+
+  .hamburger .line:nth-child(2) {
+    width: 25px;
+  }
+
+  .hamburger .line:nth-child(1){
+    -webkit-transform: translateX(-9px) rotate(-45deg) translateY(4px);
+    -ms-transform: translateX(-9px) rotate(-45deg) translateY(4px);
+    -o-transform: translateX(-9px) rotate(-45deg) translateY(4px);
+    transform: translateX(-9px) rotate(-45deg) translateY(4px);
+  }
+
+  .hamburger .line:nth-child(3){
+    -webkit-transform: translateX(-9px) rotate(45deg) translateY(-5px);
+    -ms-transform: translateX(-9px) rotate(45deg) translateY(-5px);
+    -o-transform: translateX(-9px) rotate(45deg) translateY(-5px);
+    transform: translateX(-9px) rotate(45deg) translateY(-5px);
+  }
+
+  .hamburger.is-active .line {
+    width: 30px!important;
+    height: 2px;
+    display: block;
+    margin: 7px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: none!important;
+    -ms-transform: none!important;
+    -o-transform: none!important;
+    transform: none!important;
+  }
+
+  #sidebar.is-active {
+    min-width: 0;
+    width: 0;
+  }
+  #sidebar {
+    position: absolute;
+    min-width: 300px;
+    width: 300px;
+  }
+}

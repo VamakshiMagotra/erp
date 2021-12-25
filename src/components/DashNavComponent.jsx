@@ -56,7 +56,7 @@ const DashNavComponent = ({
           <div className="ms-auto navbar-nav">
             <Dropdown>
               <Dropdown.Toggle className="bg-custom-grey shadow-none text-custom-dark border-0">
-                <i class="fas fa-user-tie" />
+                <i className="fas fa-user-tie" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <button onClick={logoutUser} className="btn d-block w-100 shadow-none">Logout</button>
