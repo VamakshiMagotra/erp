@@ -4,18 +4,19 @@ import { Link } from "react-router-dom";
 const CourseCardComponent = ({
   details,
 }) => {
+
   return (
     <div className="col-12 col-lg-6">
       <div className="card mb-3 font-mont">
         <div className="card-header bg-custom-dark text-custom-grey px-5 py-3">
-          <h5 className="mb-0">{details.courseName}</h5>
+          <h5 className="mb-0">{details.name}</h5>
         </div>
         <div className="card-body bg-custom-grey text-custom-dark px-5 py-3">
           <table className="table table-borderless mb-2">
             <tbody>
               <tr>
                 <th>Course Code:</th>
-                <td>{details.courseId}</td>
+                <td>{details.id}</td>
               </tr>
               <tr>
                 <th>Credits:</th>
