@@ -5,6 +5,8 @@ export const sampleStudentDetails=[
             "email": "18bcs088@smvdu.ac.in",
             "firstName": "Vasu Dev",
             "lastName": "Sall",
+            "entryNo":"18bcs088",
+            "email":"18bcs088@smvdu.ac.in",
             "gender": "M",
             "dob": "2000-05-21",
             "phone": "8376854292",

@@ -3,6 +3,8 @@ import { getGenderHelper } from '../../helpers/getGenderHelper';
 import { toAbsoluteUrl } from "../../helpers/imagePathHelper";
 import FacultyService from "../../services/FacultyService";
 import FileUpload from "../common/FileUploadComponent";
+import { Form, Button, FormGroup, FormControl, ControlLabel, FloatingLabel } from "react-bootstrap";
+
 
 const FacultyDetailRow = ({
   id, value, disabled, label, plaintext,
@@ -64,7 +66,7 @@ const FacultyProfile = () => {
 
   return (
     <>
-      <div className="card border-0 shadow-none">
+      {/* <div className="card border-0 shadow-none">
         <div className="card-header bg-custom-dark">
           <h4 className="text-custom-grey font-mont fw-bold mb-0">User Profile</h4>
         </div>
@@ -178,7 +180,89 @@ const FacultyProfile = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+
+<div className="row">
+                <div className="col-12">
+                    <div className="card-header col-8">General Info</div>
+                    <div className="card-body">
+                        <div className="col-6">
+                            <Form>
+                            <Form.Group className="mb-3" controlId="id">
+                                    <Form.Label>ID</Form.Label>
+                                    <Form.Control type="text" value={userDetails.id} disable={disabled} readonly/>
+                                    
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="formBasicName">
+                                    <Form.Label>Full Name</Form.Label>
+                                    <Form.Control type="text" value={userDetails.userId.firstName + " " + userDetails.userId.lastName} readonly/>
+                                    
+                                </Form.Group>
+
+                               
+                                <Form.Group className="mb-3" controlId="email">
+                                    <Form.Label>Email Id</Form.Label>
+                                    <Form.Control type="email" value={userDetails.userId.email} readonly />
+                                    <Form.Text className="text-muted">
+                                    We'll never share your email with anyone else.
+                                </Form.Text>
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="gender">
+                                    <Form.Label>Gender</Form.Label>
+                                    <Form.Control type="text" value={userDetails.userId.gender} readonly/>
+                                    
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="dob">
+                                    <Form.Label>Date of Birth</Form.Label>
+                                    <Form.Control type="text" value={userDetails.userId.dob} readonly/>
+                                    
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="phone">
+                                    <Form.Label>Phone</Form.Label>
+                                    <Form.Control type="text" value={userDetails.userId.phone} readonly/>
+                                    
+                                </Form.Group>
+                                
+                                <br />
+                                <hr />
+
+                            </Form>
+                        </div>
+                    </div>
+
+                    <div className="card-header col-8">Department</div>
+                    <div className="card-body">
+                        <div className="col-6">
+                            <Form>
+                            <Form.Group className="mb-3" controlId="department">
+                                    <Form.Label>Department</Form.Label>
+                                    <Form.Control type="text" value={userDetails.departmentId.name} readonly/>
+                                    
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="qualification">
+                                    <Form.Label>Qualification</Form.Label>
+                                    <Form.Control type="text" value={userDetails.qualification} readonly/>
+                                    
+                                </Form.Group>
+
+                                
+
+                            </Form>
+                        </div>
+                    </div>
+
+                    
+                    <Button className="align-self-center mr-auto" variant="primary" type="submit">
+                        Update Info
+                    </Button>
+
+                </div>
+            </div>
     </>
   );
 };

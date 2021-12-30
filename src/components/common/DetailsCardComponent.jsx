@@ -15,28 +15,30 @@ const DetailsCardComponent = ({
                             <Form>
                                 <Form.Group className="mb-3" controlId="formBasicFName">
                                     <Form.Label>First Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter First Name" readonly/>
+                                    <Form.Control type="text" value={details.userId.firstName} readonly/>
                                     
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="formBasicLName">
                                     <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter Last Name" readonly />
+                                    <Form.Control type="text" value={details.userId.lastName} readonly />
                     
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="entryNo">
                                     <Form.Label>Entry Number</Form.Label>
-                                    <Form.Control type="text" placeholder="Entry Number" readonly />
+                                    <Form.Control type="text" value={details.userId.entryNo} readonly />
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="email">
                                     <Form.Label>Email Id</Form.Label>
-                                    <Form.Control type="email" placeholder="Email Id" readonly />
+                                    <Form.Control type="email" value={details.userId.email} readonly />
                                     <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>
                                 </Form.Group>
+
+                                
                                 <br />
                                 <hr />
 
@@ -61,7 +63,7 @@ const DetailsCardComponent = ({
                                             <option value="6">6</option>
                                             <option value="7">7</option>
                                             <option value="8">8</option>
-                                            <option value="Pass Out">Passed out</option>
+                                            <option value="Pass Out">Pass out</option>
                                         </Form.Select>
                                     </FloatingLabel>
                                 </Form.Group>
@@ -79,6 +81,11 @@ const DetailsCardComponent = ({
                                            
                                         </Form.Select>
                                     </FloatingLabel>
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="cgpa">
+                                    <Form.Label>Current CGPA</Form.Label>
+                                    <Form.Control type="text" value={details.cgpa} readonly />
                                 </Form.Group>
 
                             </Form>
