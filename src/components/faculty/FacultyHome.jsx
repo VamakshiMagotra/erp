@@ -27,7 +27,7 @@ const FacultyHome = () => {
     
     return (
       courseDetails.map((course) => (
-        <CourseCardComponent key={course.id} details={course} />
+        <CourseCardComponent key={course.id} details={course} urlPrefix="/faculty" />
       ))
     );
   };

@@ -10,7 +10,10 @@ import FacultyProfile from './faculty/FacultyProfile';
 // Student Imports
 import StudentMain from './student/StudentMain';
 import StudentHome from './student/StudentHome';
-import StudentDetails from './student/StudentDetails';
+import StudentProfile from './student/StudentProfile';
+
+// Common Imports
+import CourseDetailsComponent from './common/CourseDetailsComponent';
 
 const MainComponent = () => {
   return (
@@ -21,12 +24,13 @@ const MainComponent = () => {
       <Route path="faculty" element={<FacultyMain />} >
         <Route index element={<FacultyHome />} />
         <Route path="profile" element={<FacultyProfile />} />
+        <Route path="course/:id" element={<CourseDetailsComponent />} />
       </Route>
       {/* Faculty Routes: End */}
       {/* Student Routes: Start*/}
       <Route path="student" element={<StudentMain />}>
         <Route index element={<StudentHome />} />
-        <Route path="details" element={<StudentDetails />} />
+        <Route path="profile" element={<StudentProfile />} />
       </Route>
       {/*Student Routes : End */}
 

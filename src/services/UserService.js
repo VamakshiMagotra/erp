@@ -5,6 +5,7 @@ import { URL } from '../constants/constants';
 const USER_LOGIN = URL + "login";
 const USER_VERIFY = URL + "login-verify";
 const USER_LOGOUT = URL + "logout";
+const USER_DETAILS = URL + "user/details";
 
 class UserService {
 
@@ -42,6 +43,22 @@ class UserService {
       method: 'get',
       url: USER_LOGOUT,
       withCredentials: true,
+    };
+
+    return axios(config);
+  }
+
+  updateDetails(phone, profile) {
+    const data = {
+      phone: phone,
+      profile: profile,
+    };
+
+    const config = {
+      method: 'put',
+      url: USER_DETAILS,
+      withCredentials: true,
+      data: data,
     };
 
     return axios(config);

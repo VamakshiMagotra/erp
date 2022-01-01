@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CourseCardComponent = ({
-  details,
+  details, urlPrefix,
 }) => {
 
   return (
@@ -29,7 +29,7 @@ const CourseCardComponent = ({
             </tbody>
           </table>
           <div className="w-100">
-            <Link to="/" className="btn d-block bg-custom-dark text-custom-grey">Explore</Link>
+            <Link to={`${urlPrefix}/course/${details.id}`} className="btn d-block bg-custom-dark text-custom-grey">Explore</Link>
           </div>
         </div>
       </div>

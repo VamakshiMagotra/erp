@@ -82,6 +82,29 @@
   width: fit-content;
 }
 
+/* Radius Helpers */
+.radius-1 {
+  border-radius: 1px!important;
+}
+.radius-2 {
+  border-radius: 2px!important;
+}
+.radius-3 {
+  border-radius: 3px!important;
+}
+.radius-4 {
+  border-radius: 4px!important;
+}
+.radius-5 {
+  border-radius: 5px!important;
+}
+.radius-6 {
+  border-radius: 6px!important;
+}
+.radius-round {
+  border-radius: 50%!important;
+}
+
 /* Font Helpers */
 .font-roboto {
   font-family: "Roboto", sans-serif !important;
