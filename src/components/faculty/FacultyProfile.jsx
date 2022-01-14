@@ -40,30 +40,32 @@ const FacultyProfile = () => {
             details={userDetails.userId}
           />
 
-          <div className="card-header text-center bg-custom-dark text-custom-grey border-0 radius-6 col-12 col-lg-8 offset-lg-2">
-            Other Details
-          </div>
-          <div className="card-body col-12 col-lg-8 offset-lg-2">
-            <CustomFormRow
-              id="department"
-              value={userDetails.departmentId.name}
-              disabled
-              label="Department"
-              plaintext
-              type="text"
-              center
-            />
+          <div className="card radius-6 p-4 col-12 col-lg-8 offset-lg-2">
+            <div className="card-header text-center bg-custom-blue text-custom-white border-0 radius-6 mb-4 font-1-25x">
+              Other Details
+            </div>
+            <div className="card-body">
+              <CustomFormRow
+                id="department"
+                value={userDetails.departmentId.name}
+                disabled
+                label="Department"
+                plaintext
+                type="text"
+                center
+              />
 
-            <CustomFormRow
-              id="qualifications"
-              value={userDetails.qualification}
-              disabled
-              label="Qualifications"
-              plaintext
-              type="text"
-              center
-            />
+              <CustomFormRow
+                id="qualifications"
+                value={userDetails.qualification}
+                disabled
+                label="Qualifications"
+                plaintext
+                type="text"
+                center
+              />
 
+            </div>
           </div>
 
         </div>

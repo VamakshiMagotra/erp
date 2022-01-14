@@ -19,12 +19,12 @@ const FacultyHome = () => {
   }, []);
 
   const displayCourses = () => {
-    if(!courseDetailsAvailable)
+    if (!courseDetailsAvailable)
       return <Loader className="fa-3x" />;
-    
-    if(courseDetails.length === 0)
+
+    if (courseDetails.length === 0)
       return <h5>You are not registered in any courses</h5>
-    
+
     return (
       courseDetails.map((course) => (
         <CourseCardComponent key={course.id} details={course} urlPrefix="/faculty" />
@@ -34,12 +34,13 @@ const FacultyHome = () => {
 
   return (
     <>
-      <h4 className="text-custom-dark font-mont fw-bold mb-4">My Courses</h4>
+      <div className="card radius-6 p-4">
+        <h4 className="text-custom-dark font-mont fw-bold mb-4">My Courses</h4>
 
-      <div className="row">
-        {displayCourses()}
+        <div className="row">
+          {displayCourses()}
+        </div>
       </div>
-
     </>
   );
 };

@@ -4,22 +4,31 @@
   --color-white: #fefefe;
   --color-grey: #d9d9d9;
   --color-blue: #274b63;
+  --color-light: #DEEEF7;
+  --color-yellow: #FFC857;
+  --color-light-blue: #D1DCDC;
 }
 
 /* Navbar: start */
 
 .navbar {
   height: 60px;
+  padding-top: 0;
 }
 
 .navbar-brand {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: var(--color-grey);
+  padding: 0;
+  color: var(--color-white);
+  font-size: 26px;
+}
+.navbar-brand img {
+  position: relative;
 }
 .navbar-brand:hover {
-  color: var(--color-grey);
+  color: var(--color-white);
 }
 
 .sidebar-toggler {
@@ -38,7 +47,7 @@
 }
 
 .hamburger .line {
-  background-color: var(--color-grey);
+  background-color: var(--color-white);
   width: 30px;
   height: 2px;
   display: block;
@@ -82,6 +91,20 @@
   width: fit-content;
 }
 
+.everything-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Width Helpers */
+.w-33 {
+  width: 33%!important;
+}
+.w-40 {
+  width: 40%!important;
+}
+
 /* Radius Helpers */
 .radius-1 {
   border-radius: 1px!important;
@@ -105,6 +128,82 @@
   border-radius: 50%!important;
 }
 
+.radius-top-1 {
+  border-radius: 1px 1px 0 0!important;
+}
+.radius-top-2 {
+  border-radius: 2px 2px 0 0!important;
+}
+.radius-top-3 {
+  border-radius: 3px 3px 0 0!important;
+}
+.radius-top-4 {
+  border-radius: 4px 4px 0 0!important;
+}
+.radius-top-5 {
+  border-radius: 5px 5px 0 0!important;
+}
+.radius-top-6 {
+  border-radius: 6px 6px 0 0!important;
+}
+
+.radius-bottom-1 {
+  border-radius: 0 0 1px 1px!important;
+}
+.radius-bottom-2 {
+  border-radius: 0 0 2px 2px!important;
+}
+.radius-bottom-3 {
+  border-radius: 0 0 3px 3px!important;
+}
+.radius-bottom-4 {
+  border-radius: 0 0 4px 4px!important;
+}
+.radius-bottom-5 {
+  border-radius: 0 0 5px 5px!important;
+}
+.radius-bottom-6 {
+  border-radius: 0 0 6px 6px!important;
+}
+
+.radius-left-1 {
+  border-radius: 1px 0 0 1px!important;
+}
+.radius-left-2 {
+  border-radius: 2px 0 0 2px!important;
+}
+.radius-left-3 {
+  border-radius: 3px 0 0 3px!important;
+}
+.radius-left-4 {
+  border-radius: 4px 0 0 4px!important;
+}
+.radius-left-5 {
+  border-radius: 5px 0 0 5px!important;
+}
+.radius-left-6 {
+  border-radius: 6px 0 0 6px!important;
+}
+
+.radius-right-1 {
+  border-radius: 0 1px 1px 0!important;
+}
+.radius-right-2 {
+  border-radius: 0 2px 2px 0!important;
+}
+.radius-right-3 {
+  border-radius: 0 3px 3px 0!important;
+}
+.radius-right-4 {
+  border-radius: 0 4px 4px 0!important;
+}
+.radius-right-5 {
+  border-radius: 0 5px 5px 0!important;
+}
+.radius-right-6 {
+  border-radius: 0 6px 6px 0!important;
+}
+
 /* Font Helpers */
 .font-roboto {
   font-family: "Roboto", sans-serif !important;
@@ -112,6 +211,35 @@
 
 .font-mont {
   font-family: "Montserrat", sans-serif !important;
+}
+
+.font-muli {
+  font-family: muli, sans-serif!important;
+}
+
+.font-0-5x {
+  font-size: 0.5rem;
+}
+.font-0-75x {
+  font-size: 0.75rem;
+}
+.font-0-8x {
+  font-size: 0.8rem;
+}
+.font-1-1x {
+  font-size: 1.1rem;
+}
+.font-1-25x {
+  font-size: 1.25rem;
+}
+.font-1-5x {
+  font-size: 1.5rem;
+}
+.font-1-75x {
+  font-size: 1.75rem;
+}
+.font-2x {
+  font-size: 2rem;
 }
 
 /* Background Color Helpers */
@@ -130,6 +258,15 @@
 .bg-custom-blue {
   background-color: var(--color-blue) !important;
 }
+.bg-custom-light {
+  background-color: var(--color-light) !important;
+}
+.bg-custom-yellow {
+  background-color: var(--color-yellow) !important;
+}
+.bg-custom-light-blue {
+  background-color: var(--color-light-blue) !important;
+}
 
 /* Font Color Helpers */
 .text-custom-dark {
@@ -147,12 +284,43 @@
 .text-custom-blue {
   color: var(--color-blue) !important;
 }
+.text-custom-light {
+  color: var(--color-light) !important;
+}
+.text-custom-yellow {
+  color: var(--color-yellow) !important;
+}
+.text-custom-light-blue {
+  color: var(--color-light-blue) !important;
+}
 
 .z-0 {
   z-index: 0;
 }
 .z-1 {
   z-index: 1;
+}
+
+/* Border helpers */
+.border-1-blue {
+  border: 1px solid var(--color-blue);
+}
+.border-2-blue {
+  border: 2px solid var(--color-blue);
+}
+
+.border-1-dark {
+  border: 1px solid var(--color-dark);
+}
+.border-2-dark {
+  border: 2px solid var(--color-dark);
+}
+
+.border-1-sec {
+  border: 1px solid var(--color-sec);
+}
+.border-2-sec {
+  border: 2px solid var(--color-sec);
 }
 
 /* Helper Classes: End */
@@ -224,7 +392,7 @@
 
 .accordion-button,
 .accordion-button:not(.collapsed) {
-  background-color: var(--color-grey);
+  background-color: var(--color-white);
   color: var(--color-dark);
   font-weight: 700;
 }

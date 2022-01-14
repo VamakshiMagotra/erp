@@ -10,7 +10,7 @@ const FacultyMain = () => {
       <div className="wrapper">
         <FacultySidebar />
 
-        <div id="content" className="py-3">
+        <div id="content" className="py-3 bg-custom-light">
           <div className="container">
             <Outlet />
           </div>

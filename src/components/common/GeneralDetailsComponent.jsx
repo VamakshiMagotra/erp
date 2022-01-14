@@ -76,11 +76,11 @@ const GeneralDetailsComponent = ({
   }
 
   return (
-    <>
-      <div className="card-header text-center bg-custom-dark text-custom-grey border-0 radius-6 col-12 col-lg-8 offset-lg-2">
+    <div className="card radius-6 p-4 col-12 col-lg-8 offset-lg-2 mb-4">
+      <div className="card-header font-1-25x mb-4 text-center bg-custom-blue text-custom-white border-0 radius-6">
         General Info
       </div>
-      <div className="card-body col-12 col-lg-8 offset-lg-2">
+      <div className="card-body">
         <div className='d-flex w-100 justify-content-center flex-column align-items-center details-image mb-4'>
           <img src={imageUrl} alt='Profile' draggable={false} />
           {
@@ -89,7 +89,7 @@ const GeneralDetailsComponent = ({
             ) : (
               <FileUpload
                 updateDownloadUrl={uploadImageHelper}
-                className="btn mt-3 bg-custom-blue text-custom-grey"
+                className="btn mt-3 bg-custom-blue text-custom-white"
                 imageOnly
                 fileName={userId + Date.now()}
               >
@@ -184,7 +184,7 @@ const GeneralDetailsComponent = ({
           {
             (disabled) ? (
               <Button
-                className='ms-auto d-block bg-custom-dark text-custom-grey border-0 shadow-none'
+                className='ms-auto d-block bg-custom-blue text-custom-white border-0 shadow-none'
                 onClick={() => { updateDisabled(false) }}
               >
                 Update Details
@@ -208,7 +208,7 @@ const GeneralDetailsComponent = ({
           }
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -10,7 +10,7 @@ const StudentSidebar = () => {
           <Accordion.Header>
             <i className="fas fa-user-tie me-2" />Profile
           </Accordion.Header>
-          <Accordion.Body className='bg-custom-white text-custom-dark p-0'>
+          <Accordion.Body className='bg-custom-light-blue text-custom-blue p-0'>
             <Link className='btn px-3 btn-block d-block text-start shadow-none border-0' to="/student/profile">
               <i className="fas fa-info-circle me-2" />Details
             </Link>

@@ -40,126 +40,130 @@ const StudentProfile = () => {
             details={userDetails.userId}
           />
 
-          <div className="card-header text-center bg-custom-dark text-custom-grey border-0 radius-6 col-12 col-lg-8 offset-lg-2">
-            Academic Details
+          <div className="card radius-6 p-4 col-12 col-lg-8 offset-lg-2 mb-4">
+            <div className="card-header text-center bg-custom-blue text-custom-white border-0 radius-6 font-1-25x">
+              Academic Details
+            </div>
+            <div className="card-body">
+              <CustomFormRow
+                id="degree"
+                value={userDetails.degree.name}
+                disabled
+                label="Degree"
+                plaintext
+                type="text"
+                center
+              />
+
+              <CustomFormRow
+                id="department"
+                value={userDetails.departmentId.name}
+                disabled
+                label="Department"
+                plaintext
+                type="text"
+                center
+              />
+
+              <CustomFormRow
+                id="semester"
+                value={userDetails.semester}
+                disabled
+                label="Current Semester"
+                plaintext
+                type="text"
+                center
+              />
+
+              <CustomFormRow
+                id="admission"
+                value={userDetails.admissionDate}
+                disabled
+                label="Date of Admission"
+                plaintext
+                type="text"
+                center
+              />
+
+              <CustomFormRow
+                id="passing-out"
+                value={parseInt(userDetails.admissionDate.slice(0, 4), 10) + userDetails.degree.duration}
+                disabled
+                label="Year of Passing"
+                plaintext
+                type="text"
+                center
+              />
+
+              <CustomFormRow
+                id="cgpa"
+                value={userDetails.cgpa}
+                disabled
+                label="CGPA"
+                plaintext
+                type="text"
+                center
+              />
+
+            </div>
           </div>
-          <div className="card-body col-12 col-lg-8 offset-lg-2">
-            <CustomFormRow
-              id="degree"
-              value={userDetails.degree.name}
-              disabled
-              label="Degree"
-              plaintext
-              type="text"
-              center
-            />
 
-            <CustomFormRow
-              id="department"
-              value={userDetails.departmentId.name}
-              disabled
-              label="Department"
-              plaintext
-              type="text"
-              center
-            />
+          <div className="card radius-6 p-4 col-12 col-lg-8 offset-lg-2">
+            <div className="card-header text-center bg-custom-blue text-custom-white border-0 radius-6 font-1-25x">
+              Personal Details
+            </div>
+            <div className="card-body">
+              <CustomFormRow
+                id="address"
+                value={userDetails.address}
+                disabled
+                label="Address"
+                plaintext
+                type="textarea"
+                center
+              />
 
-            <CustomFormRow
-              id="semester"
-              value={userDetails.semester}
-              disabled
-              label="Current Semester"
-              plaintext
-              type="text"
-              center
-            />
+              <CustomFormRow
+                id="city"
+                value={userDetails.city}
+                disabled
+                label="City"
+                plaintext
+                type="text"
+                center
+              />
 
-            <CustomFormRow
-              id="admission"
-              value={userDetails.admissionDate}
-              disabled
-              label="Date of Admission"
-              plaintext
-              type="text"
-              center
-            />
+              <CustomFormRow
+                id="state"
+                value={userDetails.state}
+                disabled
+                label="State"
+                plaintext
+                type="text"
+                center
+              />
 
-            <CustomFormRow
-              id="passing-out"
-              value={parseInt(userDetails.admissionDate.slice(0, 4), 10) + userDetails.degree.duration}
-              disabled
-              label="Year of Passing"
-              plaintext
-              type="text"
-              center
-            />
+              <CustomFormRow
+                id="country"
+                value={userDetails.country}
+                disabled
+                label="Country"
+                plaintext
+                type="text"
+                center
+              />
 
-            <CustomFormRow
-              id="cgpa"
-              value={userDetails.cgpa}
-              disabled
-              label="CGPA"
-              plaintext
-              type="text"
-              center
-            />
+              <CustomFormRow
+                id="pincode"
+                value={userDetails.pincode}
+                disabled
+                label="Pincode"
+                plaintext
+                type="text"
+                center
+              />
 
-          </div>
-
-          <div className="card-header text-center bg-custom-dark text-custom-grey border-0 radius-6 col-12 col-lg-8 offset-lg-2">
-            Personal Details
-          </div>
-          <div className="card-body col-12 col-lg-8 offset-lg-2">
-            <CustomFormRow
-              id="address"
-              value={userDetails.address}
-              disabled
-              label="Address"
-              plaintext
-              type="textarea"
-              center
-            />
-
-            <CustomFormRow
-              id="city"
-              value={userDetails.city}
-              disabled
-              label="City"
-              plaintext
-              type="text"
-              center
-            />
-
-            <CustomFormRow
-              id="state"
-              value={userDetails.state}
-              disabled
-              label="State"
-              plaintext
-              type="text"
-              center
-            />
-
-            <CustomFormRow
-              id="country"
-              value={userDetails.country}
-              disabled
-              label="Country"
-              plaintext
-              type="text"
-              center
-            />
-
-            <CustomFormRow
-              id="pincode"
-              value={userDetails.pincode}
-              disabled
-              label="Pincode"
-              plaintext
-              type="text"
-              center
-            />
-
+            </div>
           </div>
 
         </div>

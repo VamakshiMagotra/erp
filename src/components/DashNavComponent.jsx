@@ -49,13 +49,13 @@ const DashNavComponent = ({
               <span className="line" />
             </div>
           </button>
-          <NavLink className="navbar-brand" to={parentUrl}>
-            <img src={toAbsoluteUrl('logo.png')} alt="SMVDU" height="40px" />
+          <NavLink className="navbar-brand ms-0 ms-lg-4" to={parentUrl}>
+            <img src={toAbsoluteUrl('logo.png')} className="me-2" alt="SMVDU" height="60px" />
             ERP
           </NavLink>
           <div className="ms-auto navbar-nav">
             <Dropdown>
-              <Dropdown.Toggle className="bg-custom-grey shadow-none text-custom-dark border-0">
+              <Dropdown.Toggle className="bg-custom-white shadow-none text-custom-dark border-0">
                 <i className="fas fa-user-tie" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
