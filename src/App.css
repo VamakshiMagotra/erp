@@ -105,6 +105,16 @@
   width: 40%!important;
 }
 
+.w-95{
+  width:95% !important;
+  transition: all 0.5s;
+}
+
+.w-hover-100:hover{
+  transform: scale(1.05);
+  background-color: var(--color-light-blue);
+  transition: all 0.5s;
+}
 /* Radius Helpers */
 .radius-1 {
   border-radius: 1px!important;
@@ -219,6 +229,12 @@
 
 .font-0-5x {
   font-size: 0.5rem;
+}
+.font-0-6x{
+  font-size: 0.6rem;
+}
+.font-0-65x{
+  font-size: 0.65rem;
 }
 .font-0-75x {
   font-size: 0.75rem;
