@@ -6,6 +6,7 @@ const StudentSidebar = () => {
   return (
     <div id="sidebar" className='is-active'>
       <Accordion className='font-roboto'>
+
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             <i className="fas fa-user-tie me-2" />Profile
@@ -16,6 +17,15 @@ const StudentSidebar = () => {
             </Link>
           </Accordion.Body>
         </Accordion.Item>
+
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>
+            <Link className='text-decoration-none text-custom-dark d-block w-100' to="/student/timetable">
+              <i className="fas fa-calendar-alt me-2" />Time Table
+            </Link>
+          </Accordion.Header>
+        </Accordion.Item>
+
       </Accordion>
     </div>
   );

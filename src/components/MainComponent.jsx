@@ -14,6 +14,7 @@ import StudentProfile from './student/StudentProfile';
 
 // Common Imports
 import CourseDetailsComponent from './common/CourseDetailsComponent';
+import TimeTable from './common/TimeTableComponent';
 
 const MainComponent = () => {
   return (
@@ -31,6 +32,7 @@ const MainComponent = () => {
       <Route path="student" element={<StudentMain />}>
         <Route index element={<StudentHome />} />
         <Route path="profile" element={<StudentProfile />} />
+        <Route path="timetable" element={<TimeTable />} />
       </Route>
       {/*Student Routes : End */}
 
