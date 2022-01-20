@@ -59,7 +59,8 @@ export const courseSchema = {
     practical: 0,
     tutorial: 0,
     students: 0,
-    type: ""
+    type: "",
+    syllabus: "",
   },
   announcements: [
   //   {
