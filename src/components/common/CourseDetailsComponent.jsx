@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Accordion } from "react-bootstrap";
 
 import CourseService from "../../services/CourseService";
 
 import { Loader } from "./Loader";
 import { courseSchema } from "../../constants/schema";
+import CourseAnnoucements from "./CourseAnnoucements";
 
 const CourseDetailsComponent = () => {
   const { id } = useParams();
@@ -33,78 +35,42 @@ const CourseDetailsComponent = () => {
             <div className="course-announce container font-muli">
               <div className="row">
                 <div className="col-12 col-md-9">
-                  <div className="card border-2 radius-6 mb-2">
-                    <div className="card-body radius-6">
-                      <h5 className="fw-bold mb-0">Announcements</h5>
-                    </div>
-                  </div>
-                  {
-                    data.announcements.map((element) => {
-                      return (
-                        <div key={element.announcement.id} className="card mb-1 radius-6 w-95 mx-auto font-roboto">
-                          <div className="card-header bg-custom-white">
-                            <h6 className="fw-bold mb-0 py-1 text-custom-sec">{element.announcement.title}</h6>
-                            <p className="font-0-65x mb-0">{element.announcement.time.substring(0,10)}</p>
-                          </div>
+
+                  <Accordion defaultActiveKey="0">
+                    <Accordion.Item eventKey="0" className="border-0 shadow-none">
+                      <Accordion.Header className="p-0">
+                        <div className="mb-0 w-100 py-0">
                           <div className="card-body radius-6">
-                            
-                            <p className="font-0-8x mb-1">{element.announcement.announce}</p>
-                            <div className="mb-3">
-                              {
-                                element.links.map((link) => (
-                                  <a
-                                    key={link.id}
-                                    className="d-block font-0-75x"
-                                    target={"_blank"}
-                                    href={link.link}
-                                    rel="noreferrer"
-                                  >
-                                    {link.link}
-                                  </a>
-                                ))
-                              }
-                            </div>
-                            <div>
-                              <div className="d-flex flex-column">
-
-                                {
-                                  element.files.map((elem) => {
-                                    const fileName = elem.file;
-                                    const i = fileName.indexOf("%2F");
-                                    const i2 = fileName.indexOf("?alt");
-                                    const sub = fileName.substring(i + 3, i2);
-                                    return (
-                                      <div className="mb-1">
-                                        <a
-                                          className="border-gray px-2 py-2 radius-6 text-custom-sec bg-custom-light-blue"
-                                          href={fileName}
-                                          target={"_blank"}
-                                          rel="noreferrer"
-                                          style={{textDecoration: "none"}}
-                                        >
-                                          <i className="fas fa-lg fa-file-download me-1" />
-                                          <span className="font-0-75x">{sub}</span>
-                                        </a>
-                                      </div>
-                                    );
-                                  })
-                                }
-
-                              </div>
-
-                            </div>
+                            <h5 className="fw-bold mb-0">Announcements</h5>
                           </div>
                         </div>
-                      )
-                    })
-                  }
+                      </Accordion.Header>
+                      <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none">
+                        <CourseAnnoucements data={data}/>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+
+
+
+
                 </div>
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-3 ">
                   <div className="card shadow-none border-2 radius-6">
                     <div className="card-body text-custom-dark radius-6">
                       <span className="d-block font-1-1x fw-bold mb-3">Upcoming</span>
                       <div className="font-0-75x">
                         No Upcoming Work
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card shadow-none border-2 radius-6 mt-2">
+                    <div className="card-body text-custom-dark radius-6">
+                      <span className="d-block font-1-1x fw-bold mb-3">Timeline</span>
+                      <div className="font-0-75x">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac interdum eros, in consectetur tellus. Morbi pellentesque, sem et pellentesque efficitur, nibh massa ullamcorper eros, sit amet posuere nunc velit non orci. Quisque tristique diam sed ullamcorper consequat. Ut non erat tempor, accumsan urna sit amet, consequat lacus.  Sed ut felis vel libero elementum volutpat. In congue ultricies venenatis. Aenean non sodales libero, condimentum dignissim metus. Curabitur non vulputate nulla. Integer nec augue vitae turpis vulputate consequat. Sed eu tempus dui. Mauris egestas ullamcorper ipsum.s
+
+
                       </div>
                     </div>
                   </div>

@@ -13,6 +13,7 @@ import StudentHome from './student/StudentHome';
 import StudentProfile from './student/StudentProfile';
 
 // Common Imports
+
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 
 const MainComponent = () => {

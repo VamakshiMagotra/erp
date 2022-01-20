@@ -529,3 +529,8 @@
     width: 300px;
   }
 }
+
+/* Course Announcement */
+.course-announce .accordion-button {
+  padding: 0;
+}
