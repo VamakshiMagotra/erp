@@ -7,7 +7,6 @@ import CourseService from "../../services/CourseService";
 import { Loader } from "./Loader";
 import { courseSchema } from "../../constants/schema";
 import CourseAnnoucements from "./CourseAnnoucements";
-import AccordionItem from "react-bootstrap/esm/AccordionItem";
 
 const CourseDetailsComponent = () => {
   const { id } = useParams();
@@ -72,39 +71,35 @@ const CourseDetailsComponent = () => {
                       <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none d-flex justify-content-between">
                         {console.log(students)}
                         <div className="card radius-6 font-roboto w-100 p-3">
-                        <table className="table table-bordered">
-                          <thead>
-                           <tr>
-                             <th>Entry No</th>
-                             <th>Name</th>
-                             <th>Attendance</th>
-                           </tr>
-                           </thead>
-                           <tbody>
-                        {
-                           
-                          students.map((student) => {
-                            const studentModel = student.studentModel;
-                            const { present, absent } = student;
-                            const total=present+absent;
-                            const attendance=present/total*100;
-                            return (
-                             
-                                  <tr>
-                                    <td>{studentModel.id}</td>
-                                    <td>{studentModel.userId.firstName} {studentModel.userId.lastName}</td>
-                                    <td>{attendance}%</td>
-                                  </tr>
+                          <table className="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Entry No</th>
+                                <th>Name</th>
+                                <th>Attendance</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {
 
-                              
+                                students.map((student) => {
+                                  const studentModel = student.studentModel;
+                                  const { present, absent } = student;
+                                  const total = present + absent;
+                                  const attendance = present / total * 100;
+                                  return (
+                                    <tr>
+                                      <td>{studentModel.id}</td>
+                                      <td>{studentModel.userId.firstName} {studentModel.userId.lastName}</td>
+                                      <td>{attendance}%</td>
+                                    </tr>
+                                  )
 
-                            )
-                            
-                          })
+                                })
 
-                        }
-                        </tbody>
-                        </table>
+                              }
+                            </tbody>
+                          </table>
                         </div>
                       </Accordion.Body>
                     </Accordion.Item>
@@ -120,7 +115,7 @@ const CourseDetailsComponent = () => {
                       </Accordion.Header>
                       <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none d-flex justify-content-between">
                         <div>
-                          <img src={data.course.syllabus} className="w-100" />
+                          <img src={data.course.syllabus} className="w-100" alt="Syllabus" />
                         </div>
                       </Accordion.Body>
                     </Accordion.Item>

@@ -17,3 +17,9 @@ export const TIME_SLOTS = [
   {hour: "15", minute: "30"},
   {hour: "16", minute: "30"},
 ];
+
+export const COURSE_TYPE = {
+  L: 'Lecture',
+  T: 'Tutorial',
+  P: 'Practical',
+};

@@ -4,6 +4,7 @@ import { URL } from "../constants/constants";
 const COMPLETE_TIMETABLE = URL + "timetable";
 const TIMETABLE_NEXT = URL + "timetable/next";
 const TIMETABLE_NOW = URL + "timetable/now";
+const TIMETABLE_TODAY = URL + "timetable/today";
 
 class TimeTableService {
 
@@ -31,6 +32,16 @@ class TimeTableService {
     const config = {
       method: 'get',
       url: TIMETABLE_NOW,
+      withCredentials: true,
+    };
+
+    return axios(config);
+  }
+
+  getTodaySchedule() {
+    const config = {
+      method: 'get',
+      url: TIMETABLE_TODAY,
       withCredentials: true,
     };
 

@@ -6,16 +6,15 @@ const CourseCardComponent = ({
 }) => {
 
   return (
-    <div className="col-12 col-xl-6">
-      <div className="card border-0 flex-row mb-3 radius-6 font-muli">
+    <div className="col-12">
+      <div className="card bg-custom-light-blue border-0 flex-lg-row mb-2 radius-6 font-roboto">
         <div
-          className="card-header border-0 bg-custom-blue w-40 everything-center radius-6 text-custom-white px-3 py-5"
-          style={{ position: 'relative', left: '3px'}}
+          className="card-header border-0 bg-custom-blue w-lg-40 everything-center radius-lg-6 text-custom-white px-2 px-lg-5"
         >
           <h5 className="mb-0">{details.name}</h5>
         </div>
         <div
-          className="card-body bg-custom-light-blue radius-right-6 text-custom-dark px-5 py-3"
+          className="card-body bg-custom-light-blue radius-right-lg-6 text-custom-dark px-5 py-3"
           style={{ borderLeft: 'none' }}
         >
           <table className="table table-borderless mb-2">
