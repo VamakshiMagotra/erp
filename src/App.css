@@ -225,6 +225,17 @@
   }
 }
 
+/* Button Helper */
+.btn-outline-sec{
+  color:var(--color-sec);
+  border-color: var(--color-sec);
+}
+.btn-check:checked+.btn-outline-sec {
+  color: var(--color-white);
+  background-color: var(--color-sec);
+  border-color: var(--color-sec);
+}
+
 /* Font Helpers */
 .font-roboto {
   font-family: "Roboto", sans-serif !important;

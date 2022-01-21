@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CourseCardComponent from "../common/CourseCardComponent";
 import FacultyService from '../../services/FacultyService';
+import LiveEvents from '../common/LiveEventsComponent';
+import TodayTimeline from '../common/TodayTimelineComponent';
 import { Loader } from "../common/Loader";
 
 const FacultyHome = () => {
@@ -34,11 +36,26 @@ const FacultyHome = () => {
 
   return (
     <>
-      <div className="card radius-6 p-4">
-        <h4 className="text-custom-dark font-mont fw-bold mb-4">My Courses</h4>
+      <div className="row">
+        <div className="col-12 order-2 order-lg-1 col-lg-8 mb-2">
+          <div className="card radius-6 p-4">
+            <h4 className="text-custom-dark font-mont fw-bold mb-4">My Courses</h4>
 
-        <div className="row">
-          {displayCourses()}
+            <div className="row">
+              {displayCourses()}
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 order-1 order-lg-2 col-lg-4 ps-lg-0 mb-2">
+
+          <div className="card radius-6 p-4 mb-2">
+            <LiveEvents role="faculty" />
+          </div>
+
+          <div className="card radius-6 p-4">
+            <TodayTimeline role="faculty" />
+          </div>
         </div>
       </div>
     </>

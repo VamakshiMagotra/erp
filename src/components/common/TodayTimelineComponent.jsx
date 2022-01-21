@@ -25,7 +25,7 @@ const TodayTimeline = ({ role }) => {
     if (!scheduleAvailable)
       return (<Loader className="fa-3x" />);
     if (schedule.length === 0)
-      return <h6>You are not registered in any courses</h6>;
+      return <h6>No scheduled classes today.</h6>;
 
     return (
       <div className='timeline font-roboto'>
@@ -49,7 +49,7 @@ const TodayTimeline = ({ role }) => {
                     <div className='w-100'>
                       <Link
                         className='btn py-0 bg-custom-light-blue d-block text-custom-blue fw-bold'
-                        to={'/faculty'}
+                        to={`/faculty/attendance/${elem.courseModel.id}`}
                       >
                         Mark Attendance
                       </Link>
