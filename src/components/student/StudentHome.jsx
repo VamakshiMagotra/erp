@@ -4,6 +4,7 @@ import CourseCardComponent from '../common/CourseCardComponent';
 import StudentService from '../../services/StudentService';
 import TodayTimeline from '../common/TodayTimelineComponent';
 import LiveEvents from '../common/LiveEventsComponent';
+import DashboardAttendance from './DashboardAttendanceComponent';
 
 import { Loader } from '../common/Loader';
 
@@ -52,7 +53,7 @@ const StudentHome = () => {
           </div>
 
           <div className='card radius-6 p-4'>
-
+            <DashboardAttendance />
           </div>
         </div>
 

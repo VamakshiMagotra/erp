@@ -253,6 +253,9 @@
 .font-0-8x {
   font-size: 0.8rem;
 }
+.font-0-85x {
+  font-size: 0.85rem;
+}
 .font-1-1x {
   font-size: 1.1rem;
 }
@@ -528,7 +531,7 @@
 .timeline .timeline-item .time {
   left: 0;
   top: 0;
-  width: 60px;
+  flex: 0 0 60px;
   height: 60px;
   display: flex;
   margin-right: 30px;
