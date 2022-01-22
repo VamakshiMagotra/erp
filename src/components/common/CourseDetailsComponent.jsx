@@ -104,6 +104,9 @@ const CourseDetailsComponent = () => {
                       </Accordion.Body>
                     </Accordion.Item>
 
+                    
+                    
+
                     {/* Syllabus */}
                     <Accordion.Item eventKey="2" className="border-0 shadow-none mt-2">
                       <Accordion.Header className="p-0">
