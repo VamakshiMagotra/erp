@@ -3,6 +3,7 @@ import { URL } from '../constants/constants';
 
 const STUD_DETAILS = URL + "student/details";
 const STUD_COURSES = URL + "student/courses";
+const STUD_GRADES = URL + "student/grades";
 
 class StudentService {
 
@@ -25,6 +26,16 @@ class StudentService {
 
     return axios(config);
   }
+
+  getStudentGrades() {
+    const config = {
+      method: 'get',
+      url: STUD_GRADES,
+      withCredentials: true,
+    };
+
+    return axios(config);
+  };
 
 }
 

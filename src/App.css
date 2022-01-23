@@ -114,6 +114,11 @@
     width: 40% !important;
   }
 }
+@media (min-width: 768px) {
+  .w-md-40 {
+    width: 40% !important;
+  }
+}
 /* Radius Helpers */
 .radius-1 {
   border-radius: 1px !important;
@@ -647,4 +652,18 @@
 /* Course Announcement */
 .course-announce .accordion-button {
   padding: 0;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: var(--color-dark);
+  font-weight: 700;
+  font-size: 20px;
+}
+.logo img {
+  width: 80px;
 }

@@ -26,6 +26,14 @@ const StudentSidebar = () => {
           </Accordion.Header>
         </Accordion.Item>
 
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>
+            <Link className='text-decoration-none text-custom-dark d-block w-100' to="/student/grades">
+              <i className="fas fa-clipboard-list me-2" />Grades
+            </Link>
+          </Accordion.Header>
+        </Accordion.Item>
+
       </Accordion>
     </div>
   );

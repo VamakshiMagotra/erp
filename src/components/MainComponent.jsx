@@ -11,9 +11,9 @@ import FacultyProfile from './faculty/FacultyProfile';
 import StudentMain from './student/StudentMain';
 import StudentHome from './student/StudentHome';
 import StudentProfile from './student/StudentProfile';
+import StudentGrades from './student/StudentGradesComponent';
 
 // Common Imports
-
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
 import MarkAttendance from './faculty/MarkAttendance';
@@ -37,6 +37,7 @@ const MainComponent = () => {
         <Route index element={<StudentHome />} />
         <Route path="profile" element={<StudentProfile />} />
         <Route path="timetable" element={<TimeTable />} />
+        <Route path="grades" element={<StudentGrades />} />
       </Route>
       {/*Student Routes : End */}
 
