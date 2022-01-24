@@ -8,7 +8,7 @@ import { Loader } from "./Loader";
 import { courseSchema } from "../../constants/schema";
 import CourseAnnoucements from "./CourseAnnoucements";
 
-const CourseDetailsComponent = () => {
+const CourseDetailsComponent = ({ role }) => {
   const { id } = useParams();
   const [dataReady, updateDataReady] = useState(false);
   const [data, updateData] = useState(courseSchema);
@@ -60,52 +60,54 @@ const CourseDetailsComponent = () => {
                     </Accordion.Item>
 
                     {/* Student List */}
-                    <Accordion.Item eventKey="1" className="border-0 shadow-none mt-2">
-                      <Accordion.Header className="p-0">
-                        <div className="mb-0 w-100 py-0">
-                          <div className="card-body radius-6">
-                            <h5 className="fw-bold mb-0">Students Registered</h5>
-                          </div>
-                        </div>
-                      </Accordion.Header>
-                      <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none d-flex justify-content-between">
-                        {console.log(students)}
-                        <div className="card radius-6 font-roboto w-100 p-3">
-                          <table className="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th>Entry No</th>
-                                <th>Name</th>
-                                <th>Attendance</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {
+                    {
+                      (role === 'student') ? (
+                        <></>
+                      ) : (
+                        <Accordion.Item eventKey="1" className="border-0 shadow-none mt-2">
+                          <Accordion.Header className="p-0">
+                            <div className="mb-0 w-100 py-0">
+                              <div className="card-body radius-6">
+                                <h5 className="fw-bold mb-0">Students Registered</h5>
+                              </div>
+                            </div>
+                          </Accordion.Header>
+                          <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none d-flex justify-content-between">
+                            <div className="card radius-6 font-roboto w-100 p-3">
+                              <table className="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Entry No</th>
+                                    <th>Name</th>
+                                    <th>Attendance</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {
 
-                                students.map((student) => {
-                                  const studentModel = student.studentModel;
-                                  const { present, absent } = student;
-                                  const total = present + absent;
-                                  const attendance = present / total * 100;
-                                  return (
-                                    <tr>
-                                      <td>{studentModel.id}</td>
-                                      <td>{studentModel.userId.firstName} {studentModel.userId.lastName}</td>
-                                      <td>{attendance}%</td>
-                                    </tr>
-                                  )
+                                    students.map((student) => {
+                                      const studentModel = student.studentModel;
+                                      const { present, absent } = student;
+                                      const total = present + absent;
+                                      const attendance = present / total * 100;
+                                      return (
+                                        <tr>
+                                          <td>{studentModel.id}</td>
+                                          <td>{studentModel.userId.firstName} {studentModel.userId.lastName}</td>
+                                          <td>{attendance.toFixed(2)}%</td>
+                                        </tr>
+                                      )
 
-                                })
+                                    })
 
-                              }
-                            </tbody>
-                          </table>
-                        </div>
-                      </Accordion.Body>
-                    </Accordion.Item>
-
-                    
-                    
+                                  }
+                                </tbody>
+                              </table>
+                            </div>
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      )
+                    }
 
                     {/* Syllabus */}
                     <Accordion.Item eventKey="2" className="border-0 shadow-none mt-2">

@@ -63,6 +63,21 @@ class UserService {
 
     return axios(config);
   }
+
+  updatePassword(password) {
+    const data = {
+      password: password,
+    };
+
+    const config = {
+      method: 'put',
+      url: USER_DETAILS,
+      withCredentials: true,
+      data: data,
+    };
+
+    return axios(config);
+  }
 }
 
 export default new UserService();

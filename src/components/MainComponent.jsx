@@ -17,6 +17,7 @@ import StudentGrades from './student/StudentGradesComponent';
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
 import MarkAttendance from './faculty/MarkAttendance';
+import ChangePassword from './common/ChangePasswordComponent';
 
 const MainComponent = () => {
   return (
@@ -27,17 +28,20 @@ const MainComponent = () => {
       <Route path="faculty" element={<FacultyMain />} >
         <Route index element={<FacultyHome />} />
         <Route path="profile" element={<FacultyProfile />} />
-        <Route path="course/:id" element={<CourseDetailsComponent />} />
+        <Route path="course/:id" element={<CourseDetailsComponent role="faculty" />} />
         <Route path="timetable" element={<TimeTable />} />
         <Route path="attendance/:id" element={<MarkAttendance />} />
+        <Route path="password" element={<ChangePassword />} />
       </Route>
       {/* Faculty Routes: End */}
       {/* Student Routes: Start*/}
       <Route path="student" element={<StudentMain />}>
         <Route index element={<StudentHome />} />
         <Route path="profile" element={<StudentProfile />} />
+        <Route path="course/:id" element={<CourseDetailsComponent role="student" />} />
         <Route path="timetable" element={<TimeTable />} />
         <Route path="grades" element={<StudentGrades />} />
+        <Route path="password" element={<ChangePassword />} />
       </Route>
       {/*Student Routes : End */}
 

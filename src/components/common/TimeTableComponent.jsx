@@ -25,7 +25,6 @@ const TimeTable = () => {
         const filteredCourses = courses.filter((value, index) => {
           return courses.map((c) => c.id).indexOf(value.id) === index;
         });
-        console.log(filteredCourses);
         updateCourseArr(filteredCourses);
       })
       .catch((err) => {
