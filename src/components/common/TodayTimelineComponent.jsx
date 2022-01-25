@@ -50,6 +50,7 @@ const TodayTimeline = ({ role }) => {
                       <Link
                         className='btn py-0 bg-custom-light-blue d-block text-custom-blue fw-bold'
                         to={`/faculty/attendance/${elem.courseModel.id}`}
+                        state={{ day: Date.now(), hour: elem.hour, minute: elem.minute }}
                       >
                         Mark Attendance
                       </Link>

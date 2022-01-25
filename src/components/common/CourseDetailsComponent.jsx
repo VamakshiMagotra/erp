@@ -109,7 +109,7 @@ const CourseDetailsComponent = ({ role }) => {
                           <Accordion.Header className="p-0">
                             <div className="mb-0 w-100 py-0">
                               <div className="card-body radius-6">
-                                <h5 className="fw-bold mb-0">Students Registered</h5>
+                                <h5 className="fw-bold mb-0">Students Attendance</h5>
                               </div>
                             </div>
                           </Accordion.Header>
