@@ -340,6 +340,7 @@
   color: var(--color-light-blue) !important;
 }
 
+/* Z-index helpers */
 .z-0 {
   z-index: 0;
 }
@@ -666,4 +667,11 @@
 }
 .logo img {
   width: 80px;
+}
+
+/* Loader Modal */
+.loader-modal .modal-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }

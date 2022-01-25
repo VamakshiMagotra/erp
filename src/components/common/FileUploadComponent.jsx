@@ -5,6 +5,7 @@ import { imagesRef, filesRef } from "../../firebase";
 const FileUpload = ({
   updateDownloadUrl, className,
   children, imageOnly, fileName,
+  defaultName,
 }) => {
   const [btnDisabled, updateBtnDisabled] = useState(false);
   const fileInputRef = useRef(null);
@@ -14,7 +15,16 @@ const FileUpload = ({
   };
 
   const handleChange = (e) => {
-    const fileRef = ref((imageOnly)?imagesRef:filesRef, `/${fileName}`);
+    let fileRef;
+    if(e.target.value === "")
+      return;
+    if (defaultName) {
+      let fName = e.target.value;
+      fName = fName.substring(fName.lastIndexOf("\\") + 1, fName.length);
+      fileRef = ref((imageOnly) ? imagesRef : filesRef, `/${Date.now() + fName}`);
+    }
+    else
+      fileRef = ref((imageOnly) ? imagesRef : filesRef, `/${fileName}`);
     const file = e.target.files[0];
     const uploadTask = uploadBytesResumable(fileRef, file);
 
@@ -46,7 +56,7 @@ const FileUpload = ({
         className="d-none"
         ref={fileInputRef}
         onChange={handleChange}
-        accept={(imageOnly)? imageString : '*'}
+        accept={(imageOnly) ? imageString : '*'}
       />
     </>
   );

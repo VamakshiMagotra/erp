@@ -40,7 +40,7 @@ const CourseAnnoucements = ({ data }) => {
                         const i2 = fileName.indexOf("?alt");
                         const sub = fileName.substring(i + 3, i2);
                         return (
-                          <div className="mb-1">
+                          <div key={`file-${elem.id}`} className="mb-1">
                             <a
                               className="border-gray px-2 py-2 radius-6 text-custom-sec bg-custom-light-blue"
                               href={fileName}

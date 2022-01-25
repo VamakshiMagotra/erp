@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
 
 import CourseService from "../../services/CourseService";
+import NewAnnouncement from "../faculty/NewAnnouncement";
+import CourseAnnoucements from "./CourseAnnoucements";
 
 import { Loader } from "./Loader";
 import { courseSchema } from "../../constants/schema";
-import CourseAnnoucements from "./CourseAnnoucements";
 
 const CourseDetailsComponent = ({ role }) => {
   const { id } = useParams();
@@ -15,13 +16,12 @@ const CourseDetailsComponent = ({ role }) => {
 
   const [students, updateStudents] = useState([]);
 
+  // For post new announcement Modal
+  const [showModal, updateShowModal] = useState(false);
+
   useEffect(() => {
-    CourseService.getCourseDetails(id)
-      .then((resp) => {
-        updateData({ ...resp.data });
-        updateDataReady(true);
-      })
-      .catch((err) => { console.log("Error" + err) });
+
+    fetchCourseDetails(id);
 
     CourseService.getCourseStudents(id)
       .then((resp) => {
@@ -30,6 +30,22 @@ const CourseDetailsComponent = ({ role }) => {
       .catch((err) => { console.log("Error" + err) });
   }, [id]);
 
+  const fetchCourseDetails = (course_id) => {
+    CourseService.getCourseDetails(course_id)
+      .then((resp) => {
+        updateData({ ...resp.data });
+        updateDataReady(true);
+      })
+      .catch((err) => { console.log("Error" + err) });
+  };
+
+  const closeModal = (changes) => {
+    updateShowModal(false);
+    if (changes) {
+      updateDataReady(false);
+      fetchCourseDetails(id);
+    }
+  };
 
   return (
     <>
@@ -38,6 +54,17 @@ const CourseDetailsComponent = ({ role }) => {
           <Loader className="fa-3x" />
         ) : (
           <>
+            {
+              (role === "student") ? (
+                <></>
+              ) : (
+                <NewAnnouncement
+                  id={id}
+                  show={showModal}
+                  hideModal={closeModal}
+                />
+              )
+            }
             <div className="card-header font-muli bg-custom-sec mb-3 p-4 radius-6">
               <h4 className="mb-0 text-custom-white fw-normal">{data.course.name}</h4>
             </div>
@@ -55,6 +82,20 @@ const CourseDetailsComponent = ({ role }) => {
                         </div>
                       </Accordion.Header>
                       <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none">
+                        {
+                          (role === 'student') ? (
+                            <></>
+                          ) : (
+                            <div className="w-100 d-flex justify-content-end">
+                              <button
+                                className="mb-2 btn bg-custom-sec text-custom-white shadow-none"
+                                onClick={() => updateShowModal(true)}
+                              >
+                                Post New Announcement
+                              </button>
+                            </div>
+                          )
+                        }
                         <CourseAnnoucements data={data} />
                       </Accordion.Body>
                     </Accordion.Item>
@@ -91,7 +132,7 @@ const CourseDetailsComponent = ({ role }) => {
                                       const total = present + absent;
                                       const attendance = present / total * 100;
                                       return (
-                                        <tr>
+                                        <tr key={studentModel.id}>
                                           <td>{studentModel.id}</td>
                                           <td>{studentModel.userId.firstName} {studentModel.userId.lastName}</td>
                                           <td>{attendance.toFixed(2)}%</td>
