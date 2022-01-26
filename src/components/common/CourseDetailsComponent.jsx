@@ -96,7 +96,15 @@ const CourseDetailsComponent = ({ role }) => {
                             </div>
                           )
                         }
-                        <CourseAnnoucements data={data} />
+                        <CourseAnnoucements
+                          courseId={id}
+                          role={role}
+                          data={data}
+                          onDelete={() => {
+                            updateDataReady(false);
+                            fetchCourseDetails(id);
+                          }}
+                        />
                       </Accordion.Body>
                     </Accordion.Item>
 

@@ -97,6 +97,10 @@
   justify-content: center;
 }
 
+.hide-after::after {
+  display: none;
+}
+
 /* Width Helpers */
 .w-33 {
   width: 33% !important;

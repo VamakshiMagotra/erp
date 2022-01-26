@@ -44,7 +44,7 @@ const MarkAttendance = () => {
         updateStudentAttendance(aObj);
       })
       .catch((err) => { console.log("Error" + err) });
-  }, []);
+  }, [id]);
 
   const postAttendance = () => {
     const date = new Date(day);

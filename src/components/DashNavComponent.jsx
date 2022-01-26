@@ -22,11 +22,11 @@ const DashNavComponent = ({
 
   useEffect(() => {
     UserService.verifyUser()
-      .then((resp) => {})
+      .then((resp) => { })
       .catch((err) => {
         logoutUser();
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleSideBar = () => {
@@ -58,8 +58,10 @@ const DashNavComponent = ({
               <Dropdown.Toggle className="bg-custom-white shadow-none text-custom-dark border-0">
                 <i className="fas fa-user-tie" />
               </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <button onClick={logoutUser} className="btn d-block w-100 shadow-none">Logout</button>
+              <Dropdown.Menu align='end'>
+                <Dropdown.Item className="bg-custom-white">
+                  <button onClick={logoutUser} className="btn d-block w-100 shadow-none">Logout</button>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
