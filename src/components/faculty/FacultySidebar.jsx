@@ -22,7 +22,7 @@ const FacultySidebar = () => {
 
   return (
     <div id="sidebar" className='is-active'>
-      <Accordion className='font-roboto'>
+      <Accordion className='font-roboto border-1-dark pt-0'>
 
         <Accordion.Item eventKey="0">
           <Accordion.Header>

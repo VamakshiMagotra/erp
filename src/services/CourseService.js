@@ -5,6 +5,7 @@ const COURSE_DETAILS = URL + "course/";
 const COURSE_STUDENTS = (courseId) => (`${URL}faculty/course/${courseId}/attendance/student`);
 const COURSE_POST_ANNOUNCEMENT = (course_id) => (`${URL}faculty/course/${course_id}/announcement`);
 const COURSE_DELETE_ANNOUNCEMENT = (course_id, announce_id) => (`${URL}faculty/course/${course_id}/announcement/${announce_id}`);
+const SESSION_LIST = (courseId) => (`${URL}course/${courseId}/sessions`);
 
 class CourseService {
 
@@ -25,6 +26,15 @@ class CourseService {
       withCredentials: true,
     };
 
+    return axios(config);
+  }
+
+  getSessionList(courseId){
+    const config={
+      method:'get',
+      url: SESSION_LIST(courseId),
+      withCredentials:true,
+    };
     return axios(config);
   }
 

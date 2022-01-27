@@ -18,6 +18,7 @@ import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
 import MarkAttendance from './faculty/MarkAttendance';
 import ChangePassword from './common/ChangePasswordComponent';
+import TotalAttendance from './faculty/TotalAttendance';
 
 const MainComponent = () => {
   return (
@@ -28,7 +29,10 @@ const MainComponent = () => {
       <Route path="faculty" element={<FacultyMain />} >
         <Route index element={<FacultyHome />} />
         <Route path="profile" element={<FacultyProfile />} />
-        <Route path="course/:id" element={<CourseDetailsComponent role="faculty" />} />
+        <Route path="course/:id">
+          <Route index element={<CourseDetailsComponent role="faculty" />} />
+          <Route path="attendance" element={<TotalAttendance />} />
+        </Route>
         <Route path="timetable" element={<TimeTable />} />
         <Route path="attendance/:id" element={<MarkAttendance />} />
         <Route path="password" element={<ChangePassword />} />

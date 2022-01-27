@@ -40,10 +40,12 @@ class AttendanceService {
   }
 
   getFacultyCourseDayAttendance(courseId, data) {
+    console.log(data);
     const config = {
       method: 'get',
       url: FACULTY_COURSE_ATTENDANCE(courseId),
       withCredentials: true,
+      data : data,
     };
 
     return axios(config);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
 
 import CourseService from "../../services/CourseService";
@@ -72,7 +72,7 @@ const CourseDetailsComponent = ({ role }) => {
               <div className="row">
                 <div className="col-12 col-md-9">
 
-                  <Accordion defaultActiveKey="0">
+                  <Accordion>
                     <Accordion.Item eventKey="0" className="border-0 shadow-none">
                       <Accordion.Header className="p-0">
                         <div className="mb-0 w-100 py-0">
@@ -121,8 +121,18 @@ const CourseDetailsComponent = ({ role }) => {
                               </div>
                             </div>
                           </Accordion.Header>
-                          <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none d-flex justify-content-between">
+                          <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none">
+                            <div className="w-100 d-flex justify-content-end">
+                              <Link
+                                className="mb-2 btn bg-custom-sec text-custom-white shadow-none"
+                                to={`/faculty/course/${id}/attendance`}
+                              >
+                                Total Attendance
+                              </Link>
+                            </div>
+
                             <div className="card radius-6 font-roboto w-100 p-3">
+
                               <table className="table table-bordered">
                                 <thead>
                                   <tr>
@@ -178,6 +188,8 @@ const CourseDetailsComponent = ({ role }) => {
 
 
                 </div>
+
+
                 <div className="col-12 col-md-3 ">
                   <div className="card shadow-none border-2 radius-6">
                     <div className="card-body text-custom-dark radius-6">
