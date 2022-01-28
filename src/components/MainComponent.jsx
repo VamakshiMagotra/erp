@@ -1,11 +1,14 @@
 import React from 'react';
 import { Routes, Navigate, Route } from 'react-router-dom';
 import LoginComponent from './LoginComponent';
+import ForgotPassword from './ForgotPasswordComponent';
 
 // Faculty Imports
 import FacultyMain from './faculty/FacultyMain';
 import FacultyHome from './faculty/FacultyHome';
 import FacultyProfile from './faculty/FacultyProfile';
+import MarkAttendance from './faculty/MarkAttendance';
+import TotalAttendance from './faculty/TotalAttendance';
 
 // Student Imports
 import StudentMain from './student/StudentMain';
@@ -16,14 +19,13 @@ import StudentGrades from './student/StudentGradesComponent';
 // Common Imports
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
-import MarkAttendance from './faculty/MarkAttendance';
 import ChangePassword from './common/ChangePasswordComponent';
-import TotalAttendance from './faculty/TotalAttendance';
 
 const MainComponent = () => {
   return (
     <Routes>
       <Route exact path="/login" element={<LoginComponent />} />
+      <Route exact path="/forget" element={<ForgotPassword />} />
 
       {/* Faculty Routes: Start */}
       <Route path="faculty" element={<FacultyMain />} >
