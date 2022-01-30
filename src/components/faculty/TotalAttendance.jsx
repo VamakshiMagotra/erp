@@ -11,8 +11,10 @@ const TotalAttendance = () => {
   const { id } = useParams();
   const [dataReady, updateDataReady] = useState(false);
   const [data, updateData] = useState(courseSchema);
-  const [dayAttendance, updateDayAttendance]=useState({});
-  
+  const [dayAttendance, updateDayAttendance] = useState({});
+  const [studAttendance, updateStudAttendance] = useState({});
+  const [dayAttAval, updateDayAttAval] = useState(false);
+
   const [sessionList, updateSessionList] = useState({
     Tutorial: [],
     Lecture: [],
@@ -41,17 +43,29 @@ const TotalAttendance = () => {
     // 2022-01-10 12:0
     const data = {
       date: session.substring(0, 10),
-      hours: parseInt(session.substring(11,session.indexOf(':')), 10),
-    }
-    
-    AttendanceService.getFacultyCourseDayAttendance(id,data)
-      .then((resp)=>{
+      hours: parseInt(session.substring(11, session.indexOf(':')), 10),
+    };
+
+    AttendanceService.getFacultyCourseDayAttendance(id, data)
+      .then((resp) => {
+        // console.log(resp.data);
         updateDayAttendance(resp.data);
+        updateDayAttAval(true);
+        updateStudAttendance(resp.data.students);
       })
       .catch((err) => {
         console.log(err.response);
       });
-    
+  }
+
+  console.log(studAttendance);
+  const handleChange = (e, checked) => {
+    const { name } = e.target;
+
+    updateStudAttendance({
+      ...studAttendance,
+      [name]: checked,
+    });
   }
 
   return (
@@ -60,7 +74,7 @@ const TotalAttendance = () => {
         <h4 className="mb-0 text-custom-white fw-normal">{data.course.name}</h4>
       </div>
 
-      <div className='card radius-6 font-muli p-4'>
+      <div className='card radius-6 font-muli p-4 mb-3'>
         <h5 className='fw-bold mb-2'>All sessions</h5>
         {
           classTypes.map((type) => {
@@ -91,7 +105,83 @@ const TotalAttendance = () => {
           })
         }
       </div>
-      
+
+      {
+        (!dayAttAval) ? (
+          <></>
+        ) : (
+          <div className='card radius-6 font-muli p-4'>
+            <h5 className='fw-bold'>Attendance</h5>
+
+            <div className='d-flex'>
+              <p className='me-2 mb-0'>Date: </p>
+              <p className='mb-0'>{dayAttendance.date}</p>
+            </div>
+            <div className='d-flex'>
+              <p className='me-2 mb-0'>Time: </p>
+              <p>{dayAttendance.hours}:{(dayAttendance.minutes === 0) ? '00' : dayAttendance.minutes}</p>
+            </div>
+
+            <table className='table table-bordered'>
+              <thead>
+                <tr>
+                  <th>Entry No</th>
+                  <th>Name</th>
+                  <th>Attendance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  Object.keys(studAttendance).map((elem) => {
+                    const entryNum = elem.substring(0, 8);
+                    const name = elem.substring(9);
+                    console.log(studAttendance[elem]);
+                    return (
+                      <>
+                        <tr>
+                          <td>{entryNum}</td>
+                          <td>{name}</td>
+                          <td>
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                              <input
+                                type="radio"
+                                class="btn-check"
+                                name={elem}
+                                id={`present-${entryNum}`}
+                                value={true}
+                                checked={studAttendance[elem]}
+                                onChange={(e) => {handleChange(e, true)}}
+                              />
+                              <label class="btn btn-outline-sec" htmlFor={`present-${entryNum}`}>Present</label>
+
+                              <input
+                                type="radio"
+                                class="btn-check"
+                                name={elem}
+                                id={`absent-${entryNum}`}
+                                value={false}
+                                checked={!studAttendance[elem]}
+                                onChange={(e) => { handleChange(e,false)}}
+                              />
+                              <label class="btn btn-outline-sec" htmlFor={`absent-${entryNum}`}>Absent</label>
+
+
+                            </div>
+                          </td>
+                        </tr>
+
+                      </>
+                    );
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
+
+        )
+      }
+
+
     </>
   );
 }

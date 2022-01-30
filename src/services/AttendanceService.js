@@ -45,7 +45,7 @@ class AttendanceService {
       method: 'get',
       url: FACULTY_COURSE_ATTENDANCE(courseId),
       withCredentials: true,
-      data : data,
+      params : data,
     };
 
     return axios(config);
