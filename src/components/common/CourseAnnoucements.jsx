@@ -27,21 +27,27 @@ const CourseAnnoucements = ({ courseId, data, role, onDelete }) => {
                   <h6 className="fw-bold mb-0 py-1 text-custom-sec">{element.announcement.title}</h6>
                   <p className="font-0-65x mb-0">{element.announcement.time.substring(0, 10)}</p>
                 </div>
-                <Dropdown>
-                  <Dropdown.Toggle className='hide-after bg-white border-0 text-custom-sec shadow-none'>
-                    <i className="fas fa-ellipsis-h" />
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item className='bg-custom-white'>
-                      <button
-                        className='btn btn-block d-block text-danger bg-custom-white shadow-none'
-                        onClick={() => deleteAnnouncement(element.announcement.id)}
-                      >
-                        <i className="fas fa-trash me-2" /> Delete
-                      </button>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                {
+                  (role === 'student') ? (
+                    <></>
+                  ) : (
+                    <Dropdown>
+                      <Dropdown.Toggle className='hide-after bg-white border-0 text-custom-sec shadow-none'>
+                        <i className="fas fa-ellipsis-h" />
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item className='bg-custom-white'>
+                          <button
+                            className='btn btn-block d-block text-danger bg-custom-white shadow-none'
+                            onClick={() => deleteAnnouncement(element.announcement.id)}
+                          >
+                            <i className="fas fa-trash me-2" /> Delete
+                          </button>
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )
+                }
               </div>
               <div className="card-body radius-6">
 

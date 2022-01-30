@@ -5,6 +5,8 @@ import { Accordion } from "react-bootstrap";
 import CourseService from "../../services/CourseService";
 import NewAnnouncement from "../faculty/NewAnnouncement";
 import CourseAnnoucements from "./CourseAnnoucements";
+import NewAssignment from "../faculty/NewAssignment";
+import AssignmentService from "../../services/AssignmentService";
 
 import { Loader } from "./Loader";
 import { courseSchema } from "../../constants/schema";
@@ -13,15 +15,21 @@ const CourseDetailsComponent = ({ role }) => {
   const { id } = useParams();
   const [dataReady, updateDataReady] = useState(false);
   const [data, updateData] = useState(courseSchema);
+  const [assignmentData, updateAssignmentData] = useState([]);
+  const [upcoming, updateUpcoming] = useState([]);
 
   const [students, updateStudents] = useState([]);
 
   // For post new announcement Modal
   const [showModal, updateShowModal] = useState(false);
+  // For post new assignment Modal
+  const [assignModal, updateAssignModal] = useState(false);
 
   useEffect(() => {
 
     fetchCourseDetails(id);
+    fetchAssignments(id);
+    fetchUpcomingAssignments(id);
 
     CourseService.getCourseStudents(id)
       .then((resp) => {
@@ -30,6 +38,7 @@ const CourseDetailsComponent = ({ role }) => {
       .catch((err) => { console.log("Error" + err) });
   }, [id]);
 
+  // Get Course Details
   const fetchCourseDetails = (course_id) => {
     CourseService.getCourseDetails(course_id)
       .then((resp) => {
@@ -38,6 +47,30 @@ const CourseDetailsComponent = ({ role }) => {
       })
       .catch((err) => { console.log("Error" + err) });
   };
+
+  // Get Course Assignments
+  const fetchAssignments = (course_id) => {
+    AssignmentService.getAllAssignments(course_id)
+      .then((resp) => {
+        updateAssignmentData(resp.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Get Upcoming Assignments
+  const fetchUpcomingAssignments = (course_id) => {
+    AssignmentService.getUpcomingAssignments(course_id)
+      .then((resp) => {
+        updateUpcoming(resp.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(assignmentData);
 
   const closeModal = (changes) => {
     updateShowModal(false);
@@ -58,11 +91,18 @@ const CourseDetailsComponent = ({ role }) => {
               (role === "student") ? (
                 <></>
               ) : (
-                <NewAnnouncement
-                  id={id}
-                  show={showModal}
-                  hideModal={closeModal}
-                />
+                <>
+                  <NewAnnouncement
+                    id={id}
+                    show={showModal}
+                    hideModal={closeModal}
+                  />
+                  <NewAssignment
+                    id={id}
+                    show={assignModal}
+                    hideModal={() => updateAssignModal(false)}
+                  />
+                </>
               )
             }
             <div className="card-header font-muli bg-custom-sec mb-3 p-4 radius-6">
@@ -91,7 +131,7 @@ const CourseDetailsComponent = ({ role }) => {
                                 className="mb-2 btn bg-custom-sec text-custom-white shadow-none"
                                 onClick={() => updateShowModal(true)}
                               >
-                                Post New Announcement
+                                New Announcement
                               </button>
                             </div>
                           )
@@ -108,12 +148,77 @@ const CourseDetailsComponent = ({ role }) => {
                       </Accordion.Body>
                     </Accordion.Item>
 
+                    {/* Assignments */}
+                    <Accordion.Item eventKey="1" className="border-0 shadow-none mt-2">
+                      <Accordion.Header className="p-0">
+                        <div className="mb-0 w-100 py-0">
+                          <div className="card-body radius-6">
+                            <h5 className="fw-bold mb-0">Assignments</h5>
+                          </div>
+                        </div>
+                      </Accordion.Header>
+                      <Accordion.Body className="bg-custom-light p-0 pt-2 border-0 shadow-none">
+                        {
+                          (role === 'student') ? (
+                            <></>
+                          ) : (
+                            <div className="w-100 d-flex justify-content-end">
+                              <button
+                                className="mb-2 btn bg-custom-sec text-custom-white shadow-none"
+                                onClick={() => updateAssignModal(true)}
+                              >
+                                New Assignment
+                              </button>
+                            </div>
+                          )
+                        }
+                        {
+                          (assignmentData.length === 0) ? (
+                            <></>
+                          ) : (
+                            <div className="card radius-6 font-roboto w-100 p-3">
+                              <table className="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Assignment</th>
+                                    <th>Due Date</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {
+                                    assignmentData.map((assign) => {
+                                      console.log(assign);
+                                      return (
+                                        <tr>
+                                          <td>{assign.assignment}</td>
+                                          <td>{assign.due}</td>
+                                          <td>
+                                            <Link
+                                              to={`/${role}/course/${id}/assignment/${assign.id}`}
+                                              className="text-decoration-none text-custom-sec"
+                                            >
+                                              <i className="fas fa-info-circle font-1-5x" />
+                                            </Link>
+                                          </td>
+                                        </tr>
+                                      );
+                                    })
+                                  }
+                                </tbody>
+                              </table>
+                            </div>
+                          )
+                        }
+                      </Accordion.Body>
+                    </Accordion.Item>
+
                     {/* Student List */}
                     {
                       (role === 'student') ? (
                         <></>
                       ) : (
-                        <Accordion.Item eventKey="1" className="border-0 shadow-none mt-2">
+                        <Accordion.Item eventKey="2" className="border-0 shadow-none mt-2">
                           <Accordion.Header className="p-0">
                             <div className="mb-0 w-100 py-0">
                               <div className="card-body radius-6">
@@ -169,7 +274,7 @@ const CourseDetailsComponent = ({ role }) => {
                     }
 
                     {/* Syllabus */}
-                    <Accordion.Item eventKey="2" className="border-0 shadow-none mt-2">
+                    <Accordion.Item eventKey="3" className="border-0 shadow-none mt-2">
                       <Accordion.Header className="p-0">
                         <div className="mb-0 w-100 py-0">
                           <div className="card-body radius-6">
@@ -185,28 +290,75 @@ const CourseDetailsComponent = ({ role }) => {
                     </Accordion.Item>
                   </Accordion>
 
-
-
                 </div>
 
 
                 <div className="col-12 col-md-3 ">
+                  {
+                    (role === 'student') ? (
+                      <></>
+                    ) : (
+                      <div className="card shadow-none border-2 radius-6 mb-2">
+                        <div className="card-body text-custom-dark radius-6">
+                          <span className="d-block font-1-1x fw-bold mb-3">Quick Links</span>
+                          <div className="font-roboto d-flex flex-column align-items-start">
+                            <button
+                              className="btn mb-2 shadow-none p-0 font-0-85x text-custom-sec"
+                              onClick={() => updateShowModal(true)}
+                            >
+                              New Announcement
+                            </button>
+                            <button
+                              className="btn mb-2 shadow-none p-0 font-0-85x text-custom-sec"
+                              onClick={() => updateAssignModal(true)}
+                            >
+                              New Assignment
+                            </button>
+                            {
+                              (role === 'student') ? (
+                                <></>
+                              ) : (
+                                <Link
+                                  className="btn mb-2 shadow-none p-0 font-0-85x text-custom-sec"
+                                  to={`/faculty/course/${id}/attendance`}
+                                >
+                                  View Attendance
+                                </Link>
+                              )
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
                   <div className="card shadow-none border-2 radius-6">
                     <div className="card-body text-custom-dark radius-6">
                       <span className="d-block font-1-1x fw-bold mb-3">Upcoming</span>
-                      <div className="font-0-75x">
-                        No Upcoming Work
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card shadow-none border-2 radius-6 mt-2">
-                    <div className="card-body text-custom-dark radius-6">
-                      <span className="d-block font-1-1x fw-bold mb-3">Timeline</span>
-                      <div className="font-0-75x">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac interdum eros, in consectetur tellus. Morbi pellentesque, sem et pellentesque efficitur, nibh massa ullamcorper eros, sit amet posuere nunc velit non orci. Quisque tristique diam sed ullamcorper consequat. Ut non erat tempor, accumsan urna sit amet, consequat lacus.  Sed ut felis vel libero elementum volutpat. In congue ultricies venenatis. Aenean non sodales libero, condimentum dignissim metus. Curabitur non vulputate nulla. Integer nec augue vitae turpis vulputate consequat. Sed eu tempus dui. Mauris egestas ullamcorper ipsum.s
-
-
-                      </div>
+                      {
+                        (upcoming.length === 0) ? (
+                          <div className="font-0-75x">
+                            No Upcoming Work
+                          </div>
+                        ) : (
+                          <div>
+                            {
+                              upcoming.map((assign) => {
+                                return (
+                                  <div className="d-flex flex-column mb-3">
+                                    <Link
+                                      className="mb-0 text-decoration-none font-0-85x"
+                                      to={`${role}/course/${id}/assignment/${assign.id}`}
+                                    >
+                                      {assign.assignment}
+                                    </Link>
+                                    <label className=" font-0-65x">{assign.due}</label>
+                                  </div>
+                                );
+                              })
+                            }
+                          </div>
+                        )
+                      }
                     </div>
                   </div>
                 </div>
