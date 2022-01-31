@@ -70,8 +70,6 @@ const CourseDetailsComponent = ({ role }) => {
       });
   };
 
-  console.log(assignmentData);
-
   const closeModal = (changes) => {
     updateShowModal(false);
     if (changes) {
@@ -188,9 +186,8 @@ const CourseDetailsComponent = ({ role }) => {
                                 <tbody>
                                   {
                                     assignmentData.map((assign) => {
-                                      console.log(assign);
                                       return (
-                                        <tr>
+                                        <tr key={assign.id}>
                                           <td>{assign.assignment}</td>
                                           <td>{assign.due}</td>
                                           <td>
@@ -303,13 +300,13 @@ const CourseDetailsComponent = ({ role }) => {
                           <span className="d-block font-1-1x fw-bold mb-3">Quick Links</span>
                           <div className="font-roboto d-flex flex-column align-items-start">
                             <button
-                              className="btn mb-2 shadow-none p-0 font-0-85x text-custom-sec"
+                              className="btn mb-2 shadow-none p-0 font-0-85x text-primary"
                               onClick={() => updateShowModal(true)}
                             >
                               New Announcement
                             </button>
                             <button
-                              className="btn mb-2 shadow-none p-0 font-0-85x text-custom-sec"
+                              className="btn mb-2 shadow-none p-0 font-0-85x text-primary"
                               onClick={() => updateAssignModal(true)}
                             >
                               New Assignment
@@ -319,7 +316,7 @@ const CourseDetailsComponent = ({ role }) => {
                                 <></>
                               ) : (
                                 <Link
-                                  className="btn mb-2 shadow-none p-0 font-0-85x text-custom-sec"
+                                  className="btn mb-2 shadow-none p-0 font-0-85x text-primary"
                                   to={`/faculty/course/${id}/attendance`}
                                 >
                                   View Attendance
@@ -347,7 +344,7 @@ const CourseDetailsComponent = ({ role }) => {
                                   <div className="d-flex flex-column mb-3">
                                     <Link
                                       className="mb-0 text-decoration-none font-0-85x"
-                                      to={`${role}/course/${id}/assignment/${assign.id}`}
+                                      to={`/${role}/course/${id}/assignment/${assign.id}`}
                                     >
                                       {assign.assignment}
                                     </Link>

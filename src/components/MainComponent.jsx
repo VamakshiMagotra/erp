@@ -20,6 +20,7 @@ import StudentGrades from './student/StudentGradesComponent';
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
 import ChangePassword from './common/ChangePasswordComponent';
+import AssignmentComponent from './common/AssignmentComponent';
 
 const MainComponent = () => {
   return (
@@ -34,6 +35,7 @@ const MainComponent = () => {
         <Route path="course/:id">
           <Route index element={<CourseDetailsComponent role="faculty" />} />
           <Route path="attendance" element={<TotalAttendance />} />
+          <Route path="assignment/:assignId" element={<AssignmentComponent role="faculty" />} />
         </Route>
         <Route path="timetable" element={<TimeTable />} />
         <Route path="attendance/:id" element={<MarkAttendance />} />
@@ -44,7 +46,10 @@ const MainComponent = () => {
       <Route path="student" element={<StudentMain />}>
         <Route index element={<StudentHome />} />
         <Route path="profile" element={<StudentProfile />} />
-        <Route path="course/:id" element={<CourseDetailsComponent role="student" />} />
+        <Route path="course/:id">
+          <Route index element={<CourseDetailsComponent role="student" />} />
+          <Route path="assignment/:assignId" element={<AssignmentComponent role="student" />} />
+        </Route>
         <Route path="timetable" element={<TimeTable />} />
         <Route path="grades" element={<StudentGrades />} />
         <Route path="password" element={<ChangePassword />} />
