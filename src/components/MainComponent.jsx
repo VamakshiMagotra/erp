@@ -18,11 +18,19 @@ import StudentProfile from './student/StudentProfile';
 import StudentGrades from './student/StudentGradesComponent';
 import StudentGatePass from './student/StudentGatePass';
 
+// Warden Imports
+import WardenMain from './warden/WardenMain';
+import WardenHome from './warden/WardenHome';
+import WardenProfile from './warden/WardenProfile';
+import WardenGatePass from './warden/WardenGatePass';
+import GatePassSearch from './warden/GatePassSearch';
+import GatePassHistory from './warden/GatePassHistory';
+
 // Common Imports
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
 import ChangePassword from './common/ChangePasswordComponent';
-import AssignmentComponent from './common/AssignmentComponent';
+import AssignmentComponent from './common/AssignmentComponent'
 
 const MainComponent = () => {
   return (
@@ -59,6 +67,16 @@ const MainComponent = () => {
         <Route path="pass" element={<StudentGatePass />} />
       </Route>
       {/*Student Routes : End */}
+      {/*Warden Routes : Start*/}
+      <Route path="warden" element={<WardenMain />}>
+        <Route index element={<WardenHome />} />
+        <Route path="profile" element={<WardenProfile />} />
+        <Route path="password" element={<ChangePassword />} />
+        <Route path="pass" element={<WardenGatePass />} />
+        <Route path="search" element={<GatePassSearch />} />
+        <Route path="history" element={<GatePassHistory />} />
+      </Route>
+      {/*Warden Routes : End */}
 
       <Route path="" element={<Navigate to="/login" />} />
     </Routes>

@@ -51,7 +51,7 @@ const DashNavComponent = ({
           </button>
           <NavLink className="navbar-brand ms-0 ms-lg-4" to={parentUrl}>
             <img src={toAbsoluteUrl('logo.png')} className="me-2" alt="SMVDU" height="60px" />
-            ERP
+            CAMPUS
           </NavLink>
           <div className="ms-auto navbar-nav">
             <Dropdown>

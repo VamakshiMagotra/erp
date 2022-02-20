@@ -33,18 +33,51 @@ const MarkAttendance = () => {
       })
       .catch((err) => { console.log("Error" + err) });
 
-    CourseService.getCourseStudents(id)
+    const date = new Date(day);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    let dateToday = date.getDate();
+    if (dateToday < 10) {
+      dateToday = "0" + dateToday;
+    }
+    const attData = {
+      date: `${year}-${month}-${dateToday}`,
+      hours: hour,
+    };
+
+    const getStudentDetails = (attAvl) => {
+      CourseService.getCourseStudents(id)
+        .then((resp) => {
+          updateStudents(resp.data);
+          updateStudentAvailable(true);
+          if (!attAvl) {
+            const aObj = {};
+            resp.data.forEach((d) => {
+              aObj[d.studentModel.id] = false;
+            });
+            updateStudentAttendance(aObj);
+          }
+        })
+        .catch((err) => { console.log("Error" + err) });
+    };
+
+    AttendanceService.getFacultyCourseDayAttendance(id, attData)
       .then((resp) => {
-        updateStudents(resp.data);
-        updateStudentAvailable(true);
-        const aObj = {};
-        resp.data.forEach((d) => {
-          aObj[d.studentModel.id] = false;
+        const obj = {};
+        Object.keys(resp.data.students).forEach((s) => {
+          obj[s.substring(0, 8)] = resp.data.students[s];
         });
-        updateStudentAttendance(aObj);
+        updateStudentAttendance(obj);
+        getStudentDetails(true);
       })
-      .catch((err) => { console.log("Error" + err) });
-  }, [id]);
+      .catch((err) => {
+        console.log(err.response);
+        getStudentDetails(false);
+      });
+  }, [day, hour, id]);
 
   const postAttendance = () => {
     const date = new Date(day);
