@@ -122,6 +122,9 @@
   .w-md-40 {
     width: 40% !important;
   }
+  .w-md-50 {
+    width: 50% !important;
+  }
 }
 /* Radius Helpers */
 .radius-1 {
@@ -696,4 +699,14 @@
 .attendance-chips::-webkit-scrollbar-thumb{
   background-color: var(--color-sec);
   border-radius: 6px;
+}
+
+/* Print Screen */
+@media print {
+  .w-md-50 {
+    width: 80% !important;
+  }
+  .btn {
+    display: none !important;
+  }
 }

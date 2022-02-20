@@ -91,6 +91,17 @@ const StudentSidebar = () => {
           </Accordion.Body>
         </Accordion.Item>
 
+        <Accordion.Item eventKey="5">
+          <Accordion.Header>
+            <i className="fas fa-home me-2" /> Hostel
+          </Accordion.Header>
+          <Accordion.Body className='bg-custom-light-blue text-custom-blue p-0'>
+            <Link className='btn px-3 btn-block d-block text-start shadow-none border-0' to="/student/pass">
+              <i className="fas fa-door-open me-2" />Gate Pass
+            </Link>
+          </Accordion.Body>
+        </Accordion.Item>
+
       </Accordion>
     </div>
   );

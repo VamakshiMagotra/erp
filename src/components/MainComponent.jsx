@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Navigate, Route } from 'react-router-dom';
 import LoginComponent from './LoginComponent';
 import ForgotPassword from './ForgotPasswordComponent';
+import GatePassComponent from './GatePassComponent';
 
 // Faculty Imports
 import FacultyMain from './faculty/FacultyMain';
@@ -15,6 +16,7 @@ import StudentMain from './student/StudentMain';
 import StudentHome from './student/StudentHome';
 import StudentProfile from './student/StudentProfile';
 import StudentGrades from './student/StudentGradesComponent';
+import StudentGatePass from './student/StudentGatePass';
 
 // Common Imports
 import CourseDetailsComponent from './common/CourseDetailsComponent';
@@ -27,6 +29,7 @@ const MainComponent = () => {
     <Routes>
       <Route exact path="/login" element={<LoginComponent />} />
       <Route exact path="/forget" element={<ForgotPassword />} />
+      <Route path='/gatepass/:id' element={<GatePassComponent />} />
 
       {/* Faculty Routes: Start */}
       <Route path="faculty" element={<FacultyMain />} >
@@ -53,6 +56,7 @@ const MainComponent = () => {
         <Route path="timetable" element={<TimeTable />} />
         <Route path="grades" element={<StudentGrades />} />
         <Route path="password" element={<ChangePassword />} />
+        <Route path="pass" element={<StudentGatePass />} />
       </Route>
       {/*Student Routes : End */}
 
