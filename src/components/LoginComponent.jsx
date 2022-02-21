@@ -43,6 +43,9 @@ const LoginComponent = () => {
           case "ROLE_WARDEN":
             navigate("/warden", { state: { email: formValues.email } });
             break;
+          case "ROLE_GRIEVANCE":
+            navigate("/grievance");
+            break;
           default:
             navigate("/");
         }
@@ -72,6 +75,9 @@ const LoginComponent = () => {
             break;
           case "ROLE_WARDEN":
             navigate("/warden", { state: { email: formValues.email } });
+            break;
+          case "ROLE_GRIEVANCE":
+            navigate("/grievance");
             break;
           default:
             navigate("/");

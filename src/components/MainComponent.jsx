@@ -17,6 +17,7 @@ import StudentHome from './student/StudentHome';
 import StudentProfile from './student/StudentProfile';
 import StudentGrades from './student/StudentGradesComponent';
 import StudentGatePass from './student/StudentGatePass';
+import StudentGrievance from './student/StudentGrievance';
 
 // Warden Imports
 import WardenMain from './warden/WardenMain';
@@ -26,11 +27,16 @@ import WardenGatePass from './warden/WardenGatePass';
 import GatePassSearch from './warden/GatePassSearch';
 import GatePassHistory from './warden/GatePassHistory';
 
+// Grievance Imports
+import GrievanceMain from './grievance/GrievanceMain';
+import GrievanceHome from './grievance/GrievanceHome';
+
 // Common Imports
 import CourseDetailsComponent from './common/CourseDetailsComponent';
 import TimeTable from './common/TimeTableComponent';
 import ChangePassword from './common/ChangePasswordComponent';
-import AssignmentComponent from './common/AssignmentComponent'
+import AssignmentComponent from './common/AssignmentComponent';
+import Grievance from './common/Grievance';
 
 const MainComponent = () => {
   return (
@@ -65,6 +71,8 @@ const MainComponent = () => {
         <Route path="grades" element={<StudentGrades />} />
         <Route path="password" element={<ChangePassword />} />
         <Route path="pass" element={<StudentGatePass />} />
+        <Route path="grievance" element={<StudentGrievance />} />
+        <Route path='grievance/:id' element={<Grievance role="student" />} />
       </Route>
       {/*Student Routes : End */}
       {/*Warden Routes : Start*/}
@@ -77,6 +85,14 @@ const MainComponent = () => {
         <Route path="history" element={<GatePassHistory />} />
       </Route>
       {/*Warden Routes : End */}
+      {/*Grievance ROutes: Start*/}
+      <Route path="grievance" element={<GrievanceMain />}>
+        <Route index element={<GrievanceHome />} />
+        <Route path="profile" element={<WardenProfile />} />
+        <Route path="password" element={<ChangePassword />} />
+        <Route path='g/:id' element={<Grievance role="gr" />} />
+      </Route>
+      {/*Grievance ROutes: End*/}
 
       <Route path="" element={<Navigate to="/login" />} />
     </Routes>

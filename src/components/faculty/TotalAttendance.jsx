@@ -61,7 +61,27 @@ const TotalAttendance = () => {
       .catch((err) => {
         console.log(err.response);
       });
-  }
+  };
+
+  const postAttendance = (date, hour, minute) => {
+    const data = {
+      date: date,
+      hours: hour,
+      minute: minute,
+      students: studAttendance,
+    };
+
+    updateSearching(true);
+
+    AttendanceService.postFacultyAttendance(id, data)
+      .then((resp) => {
+        updateSearching(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        updateSearching(false);
+      });
+  };
 
   const handleChange = (e, checked) => {
     const { name } = e.target;
@@ -75,7 +95,7 @@ const TotalAttendance = () => {
   const findStudentsPresent = () => {
     let p = 0;
     Object.keys(studAttendance).forEach(e => {
-      if(studAttendance[e])
+      if (studAttendance[e])
         p++;
     });
     return p;
@@ -203,6 +223,13 @@ const TotalAttendance = () => {
                   }
                 </tbody>
               </table>
+              <div className='w-100 d-flex justify-content-end'>
+                <button className='btn bg-custom-blue text-custom-grey'
+                  onClick={() => { postAttendance(dayAttendance.date, dayAttendance.hours, dayAttendance.minutes) }}
+                >
+                  Save
+                </button>
+              </div>
             </div>
           )
         )

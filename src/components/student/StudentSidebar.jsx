@@ -102,6 +102,14 @@ const StudentSidebar = () => {
           </Accordion.Body>
         </Accordion.Item>
 
+        <Accordion.Item eventKey="6">
+          <Accordion.Header>
+            <Link className='text-decoration-none text-custom-dark d-block w-100' to="/student/grievance">
+              <i className="fas fa-exclamation me-2" /> Grievances
+            </Link>
+          </Accordion.Header>
+        </Accordion.Item>
+
       </Accordion>
     </div>
   );
